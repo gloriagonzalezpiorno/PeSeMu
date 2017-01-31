@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dad.practica.pesemu.model.Usuario;
+
 @Controller
-public class PesemuController {
+public class UsuarioController {
 
 	//List<Usuario> usuarios = new ArrayList<>();
 	
