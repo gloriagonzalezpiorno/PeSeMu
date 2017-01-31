@@ -42,3 +42,12 @@ Cuenta Github: daro2
 Correo oficial de la universidad: g.gonzalezpi@alumnos.urjc.es
 
 Cuenta Github: gloriagonzalezpiorno
+
+
+# FASE2
+Fase 2 de PeSeMu
+
+##Entidad Relación 
+
+
+![entidadrelacion](https://cloud.githubusercontent.com/assets/25226521/22258479/072a9048-e262-11e6-95df-077811828ba3.png)
