@@ -4,7 +4,7 @@ package dad.practica.pesemu;
 
 
 //@RestController
-public class ProductoControler {
+public class ProductoController {
 	//@Autowired
 /*	//private ProductoRepository repository;
 	

@@ -2,10 +2,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Usuario registrado con exito</title>
 </head>
 <body>
-<h1>El usuario ha sido registrado con exito.</h1>
-<a href="index.html">Volver a inicio</a>
+	<h1>El usuario ha sido registrado con exito.</h1>
+
+	<!--borrar-->
+	<p> usuarios: </p>
+	{{#usuarios}}
+	<p>{{.}}</p>
+	{{/usuarios}}
+
+	<a href="index.html">Volver a inicio</a>
 </body>
 </html>
