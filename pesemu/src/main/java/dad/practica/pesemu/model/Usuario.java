@@ -12,12 +12,7 @@ public class Usuario {
 	private String correo;
 	private String contraseña;
 	
-	public Usuario(String nombre, String apellidos, String correo, String contraseña) {
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.correo = correo;
-		this.contraseña = contraseña;
-	}
+	
 	
 
 }
