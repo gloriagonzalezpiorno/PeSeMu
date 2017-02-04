@@ -1,31 +1,56 @@
 package dad.practica.pesemu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import dad.practica.pesemu.model.Producto;
+import javax.annotation.PostConstruct;import javax.annotation.PostConstruct;
 
 
-
-//@RestController
+@Controller
 public class ProductoController {
-	//@Autowired
-/*	//private ProductoRepository repository;
+	@Autowired
+	private ProductoRepository productoRepository;
 	
-	@RequestMapping(value = "/productos", method = RequestMethod.GET)
-	public List<Producto> getProductos() {
-		//return repository.findAll();
+	@PostConstruct
+	public void init() {
+		productoRepository.save(new Producto("Titanic", "Va sobre un barco", 10.99));
+		productoRepository.save(new Producto("El quijote", "Un libro muy bonito", 6.0));
 	}
 	
-	@RequestMapping(value = "/productos", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> addAnuncio(@RequestBody Producto producto) {
-		//repository.save(producto);
-		return new ResponseEntity<Boolean>(HttpStatus.CREATED);
+	//Vemos los productos que tenemos en la base de datos
+	@RequestMapping("/")
+	public String tablon(Model model, Pageable page) {
+
+		model.addAttribute("productos", productoRepository.findAll(page));
+
+		return "ver_productos";
 	}
 	
+	//Insertamos un nuevo producto
+	@RequestMapping("/producto/nuevo")
+	public String nuevoProducto(Model model, Producto producto) {
+
+		productoRepository.save(producto);
+
+
+		return "producto_guardado";
+
+}
 	
-	@RequestMapping(value = "/anuncio/{asunto}")
-	public Producto getProducto(@PathVariable(value = "asunto") String asunto) {
-		//return repository.findByAsunto(asunto);
+	@RequestMapping("/producto/{id_producto}")
+	public String verProducto(Model model, @PathVariable long producto_id) {
+		
+		Producto producto = productoRepository.findOne(producto_id);
+
+		model.addAttribute("producto", producto);
+
+		return "ver_producto";
 	}
-	*/
-	
 
 }
 

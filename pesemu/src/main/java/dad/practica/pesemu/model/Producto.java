@@ -1,13 +1,17 @@
 package dad.practica.pesemu.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
-//@Entity
+@Entity
 public class Producto {
 	
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id_usuario;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id_producto;
 	private String nombre;
 	private String descripcion;
 	private float precio;
@@ -17,22 +21,11 @@ public class Producto {
 	}
 	
 	public Producto(int id_usuario, String nombre, String descripcion, float precio) {
-		this.id_usuario = id_usuario;
+		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 	}
-
-
-	public int getId_usuario() {
-		return id_usuario;
-	}
-
-
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -62,7 +55,11 @@ public class Producto {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Producto [nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", precio=" + precio + "]";
+	}
 	
 }
