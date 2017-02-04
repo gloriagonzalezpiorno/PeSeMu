@@ -12,32 +12,24 @@ public class Producto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id_producto;
+	private long id_producto;
 	private String nombre;
 	private String descripcion;
-	private float precio;
+	private double precio;
 	
 
 	
 	public Producto() {
 	}
 	
-	public Producto(int id_producto, String nombre, String descripcion, float precio) {
-		this.id_producto = id_producto;
+	public Producto(String nombre, String descripcion, double precio) {
+		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 	}
 
 
-	public int getId_producto() {
-		return id_producto;
-	}
-
-
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
-	}
 
 
 	public String getNombre() {
@@ -60,13 +52,19 @@ public class Producto {
 	}
 
 
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
 
 	public void setPrecio(float precio) {
 		this.precio = precio;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", precio=" + precio + "]";
 	}
 	
 	
