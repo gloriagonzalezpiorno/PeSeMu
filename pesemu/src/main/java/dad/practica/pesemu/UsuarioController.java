@@ -17,20 +17,21 @@ public class UsuarioController {
 
 	List<Usuario> usuarios = new ArrayList<>();
 	Map<String, String> usuarioContrasena = new HashMap<>();
+	Map<String, String> usuarioCorreoNombre = new HashMap<>();
 
-	@PostMapping("nuevoUsuario")
+	@PostMapping("nuevousuario")
 	public String nuevoUsuario(Model model, Usuario usuario) {
 		usuarios.add(usuario);
 		usuarioContrasena.put(usuario.getCorreo(), usuario.getContrasena());
+		usuarioCorreoNombre.put(usuario.getCorreo(), usuario.getNombre());
 		model.addAttribute("usuarios", usuarios);
 		return "usuario_registrado";
 	}
 
-	@PostMapping("inicioSesion")
-	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contraseña) {
-		// comprobar que los datos son validos
-		if(usuarioContrasena.get(correo).equals(contraseña)){
-			model.addAttribute("correo", correo);
+	@PostMapping("iniciosesion")
+	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contrasena) {
+		if (usuarioContrasena.containsKey(correo) && usuarioContrasena.get(correo).equals(contrasena)) {
+			model.addAttribute("nombre", usuarioCorreoNombre.get(correo));
 			return "sesion_iniciada";
 		} else {
 			return "error_inicio_sesion";
