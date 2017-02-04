@@ -10,7 +10,7 @@ public class Usuario {
 
 	// Se logeara con su correo y su contraseña
 	private String correo;
-	private String contraseña;
+	private String contrasena;
 
 	public Usuario() {
 		
@@ -21,7 +21,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contraseña;
 	}
 
 	public String getNombre() {
@@ -48,12 +48,12 @@ public class Usuario {
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	@Override

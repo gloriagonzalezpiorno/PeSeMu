@@ -16,12 +16,12 @@ import dad.practica.pesemu.model.Usuario;
 public class UsuarioController {
 
 	List<Usuario> usuarios = new ArrayList<>();
-	Map<String, String> usuarioContraseña = new HashMap<>();
+	Map<String, String> usuarioContrasena = new HashMap<>();
 
 	@PostMapping("nuevoUsuario")
 	public String nuevoUsuario(Model model, Usuario usuario) {
 		usuarios.add(usuario);
-		usuarioContraseña.put(usuario.getCorreo(), usuario.getContraseña());
+		usuarioContrasena.put(usuario.getCorreo(), usuario.getContrasena());
 		model.addAttribute("usuarios", usuarios);
 		return "usuario_registrado";
 	}
@@ -29,7 +29,7 @@ public class UsuarioController {
 	@PostMapping("inicioSesion")
 	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contraseña) {
 		// comprobar que los datos son validos
-		if(usuarioContraseña.get(correo).equals(contraseña)){
+		if(usuarioContrasena.get(correo).equals(contraseña)){
 			model.addAttribute("correo", correo);
 			return "sesion_iniciada";
 		} else {
