@@ -1,3 +1,6 @@
+
+
+	
 package dad.practica.pesemu;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dad.practica.pesemu.model.Producto;
-
 
 
 @Controller
@@ -27,10 +29,8 @@ public class ProductoController {
 	//Vemos los productos que tenemos en la base de datos
 	@RequestMapping("/")
 	public String tablon(Model model, Pageable page) {
-
 		model.addAttribute("productos", productoRepository.findAll(page));
-
-		return "ver_productos";
+		return "ver_productos"; 
 	}
 	
 	//Insertamos un nuevo producto
@@ -44,10 +44,10 @@ public class ProductoController {
 	}
 	
 	
-	@RequestMapping("/producto/{id_producto}")
-	public String verProducto(Model model, @PathVariable long producto_id) {
+	@RequestMapping("/producto/{id}")
+	public String verProducto(Model model, @PathVariable long id) {
 		
-		Producto producto = productoRepository.findOne(producto_id);
+		Producto producto = productoRepository.findOne(id);
 
 		model.addAttribute("producto", producto);
 
@@ -60,6 +60,9 @@ public class ProductoController {
 
 
 	
+
+
+
 
 
 

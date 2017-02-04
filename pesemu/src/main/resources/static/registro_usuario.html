@@ -6,12 +6,12 @@
 </head>
 <body>
 	<h3>Registro de usuario</h3>
-	<form action='nuevoUsuario'>
+	<form action='nuevoUsuario' method='post' >
 		<p>
-			Nombre: <input type='text' name='nombreUsuario'>
+			Nombre: <input type='text' name='nombre'>
 		</p>
 		<p>
-			Apellidos: <input type='text' name='apellidosUsuario'>
+			Apellidos: <input type='text' name='apellidos'>
 		</p>
 		<p>
 			Correo electronico: <input type='text' name='correo'>
@@ -19,7 +19,9 @@
 		<p>
 			Contraseña: <input type='text' name='contraseña'>
 		</p>
-		<br> <input type='submit' value='Enviar'>
+		<input type='submit' value='Enviar'>
 	</form>
+	<br>
+	<a href='index.html'>Cancelar</a>
 </body>
 </html>

@@ -12,7 +12,7 @@ public class Producto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id_producto;
+	private long id;
 	private String nombre;
 	private String descripcion;
 	private double precio;

@@ -9,4 +9,3 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 	//Producto findByNombre(String name);
 	
 }
-
