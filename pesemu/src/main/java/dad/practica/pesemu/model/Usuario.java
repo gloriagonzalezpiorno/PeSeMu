@@ -1,15 +1,18 @@
 package dad.practica.pesemu.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Usuario {
 
 	// Nivel de privilegio (1 admin) (0 cliente)
 	// private int privilegio;
-
+	@Id
+	private String correo;
+	
 	private String nombre;
 	private String apellidos;
-
-	// Se logeara con su correo y su contraseña
-	private String correo;
 	private String contrasena;
 
 	public Usuario() {
