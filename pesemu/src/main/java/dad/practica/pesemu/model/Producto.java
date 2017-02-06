@@ -16,6 +16,7 @@ public class Producto {
 	private double precio;
 
 	public Producto() {
+		
 	}
 
 	public Producto(String nombre, String descripcion, double precio) {

@@ -10,22 +10,22 @@ import dad.practica.pesemu.model.Usuario;
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRepository repositorioUsuarios;
+	private UsuarioRepository usuarioRepository;
 
 	public List<Usuario> getUsuarios() {
-		return repositorioUsuarios.findAll();
+		return usuarioRepository.findAll();
 	}
 
 	public Usuario registrarUsuario(Usuario usuario) {
-		if (repositorioUsuarios.findOne(usuario.getCorreo()) == null) {
-			return repositorioUsuarios.save(usuario);
+		if (usuarioRepository.findOne(usuario.getCorreo()) == null) {
+			return usuarioRepository.save(usuario);
 		} else {
 			return null;
 		}
 	}
 
 	public Usuario validarUsuario(String correo, String contrasena) {
-		return repositorioUsuarios.findByCorreoAndContrasena(correo, contrasena);
+		return usuarioRepository.findByCorreoAndContrasena(correo, contrasena);
 	}
 
 }

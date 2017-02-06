@@ -12,27 +12,29 @@ import dad.practica.pesemu.model.Usuario;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioService servicioUsuarios;
+	private UsuarioService usuarioServie;
 
-	@PostMapping("nuevousuario")
+	@PostMapping("usuario/nuevo")
 	public String nuevoUsuario(Model model, Usuario usuario) {
-		Usuario usuarioGuardado = servicioUsuarios.registrarUsuario(usuario);
+		Usuario usuarioGuardado = usuarioServie.registrarUsuario(usuario);
 		if (usuarioGuardado != null) {
 			model.addAttribute("nombre", usuario.getNombre());
 			return "usuario_registrado";
 		} else {
-			return "error_registro_usuario";
+			model.addAttribute("mensaje", "Error al registrar usuario");
+			return "error";
 		}
 	}
 
-	@PostMapping("iniciosesion")
+	@PostMapping("inicio/sesion")
 	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contrasena) {
-		Usuario usuarioGuardado = servicioUsuarios.validarUsuario(correo, contrasena);
+		Usuario usuarioGuardado = usuarioServie.validarUsuario(correo, contrasena);
 		if (usuarioGuardado != null) {
 			model.addAttribute("nombre", usuarioGuardado.getNombre());
 			return "sesion_iniciada";
 		} else {
-			return "error_inicio_sesion";
+			model.addAttribute("mensaje", "Error al iniciar sesión");
+			return "error";
 		}
 	}
 }

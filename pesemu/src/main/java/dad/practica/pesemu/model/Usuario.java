@@ -1,7 +1,10 @@
 package dad.practica.pesemu.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 
 @Entity
 public class Usuario {
@@ -10,10 +13,12 @@ public class Usuario {
 	// private int privilegio;
 	@Id
 	private String correo;
-	
 	private String nombre;
 	private String apellidos;
 	private String contrasena;
+	// TODO faltan gets y sets del carrito
+	@OneToOne(cascade=CascadeType.ALL)
+	private CarritoCompra carrito;
 
 	public Usuario() {
 		
