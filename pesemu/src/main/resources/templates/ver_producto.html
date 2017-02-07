@@ -7,6 +7,12 @@
 	<p>Nombre: {{producto.nombre}}</p>
 	<p>Descripción: {{producto.descripcion}}</p>
 	<p>Precio: {{producto.precio}}</p>
+     <p>Opiniones:</p>
+    <ul>
+    {{#producto.opiniones}}
+    	<li>{{.}}</li>
+    {{/producto.opiniones}}
+	 </ul> 
 	<a href="/">Volver a la lista de productos</a>
 </body>
 </html>

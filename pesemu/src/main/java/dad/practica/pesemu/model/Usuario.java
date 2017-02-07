@@ -1,5 +1,10 @@
 package dad.practica.pesemu.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+
 public class Usuario {
 
 	// Nivel de privilegio (1 admin) (0 cliente)
@@ -11,6 +16,10 @@ public class Usuario {
 	// Se logeara con su correo y su contraseña
 	private String correo;
 	private String contrasena;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	//lista de opiniones de cada producto
+	private List<Opinion> opiniones;
 
 	public Usuario() {
 		
