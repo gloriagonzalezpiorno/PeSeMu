@@ -9,8 +9,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Usuario {
 
-	// Nivel de privilegio (1 admin) (0 cliente)
-	// private int privilegio;
+	// Clave primaria correo?
 	@Id
 	private String correo;
 	private String nombre;
