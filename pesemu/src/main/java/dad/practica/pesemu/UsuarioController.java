@@ -1,10 +1,6 @@
 package dad.practica.pesemu;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,25 +11,30 @@ import dad.practica.pesemu.model.Usuario;
 @Controller
 public class UsuarioController {
 
-	List<Usuario> usuarios = new ArrayList<>();
-	Map<String, String> usuarioContrasena = new HashMap<>();
+	@Autowired
+	private UsuarioService usuarioServie;
 
-	@PostMapping("nuevoUsuario")
+	@PostMapping("usuario/nuevo")
 	public String nuevoUsuario(Model model, Usuario usuario) {
-		usuarios.add(usuario);
-		usuarioContrasena.put(usuario.getCorreo(), usuario.getContrasena());
-		model.addAttribute("usuarios", usuarios);
-		return "usuario_registrado";
+		Usuario usuarioGuardado = usuarioServie.registrarUsuario(usuario);
+		if (usuarioGuardado != null) {
+			model.addAttribute("nombre", usuario.getNombre());
+			return "usuario_registrado";
+		} else {
+			model.addAttribute("mensaje", "Error al registrar usuario");
+			return "error";
+		}
 	}
 
-	@PostMapping("inicioSesion")
-	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contraseña) {
-		// comprobar que los datos son validos
-		if(usuarioContrasena.get(correo).equals(contraseña)){
-			model.addAttribute("correo", correo);
+	@PostMapping("inicio/sesion")
+	public String inicioSesion(Model model, @RequestParam String correo, @RequestParam String contrasena) {
+		Usuario usuarioGuardado = usuarioServie.validarUsuario(correo, contrasena);
+		if (usuarioGuardado != null) {
+			model.addAttribute("nombre", usuarioGuardado.getNombre());
 			return "sesion_iniciada";
 		} else {
-			return "error_inicio_sesion";
+			model.addAttribute("mensaje", "Error al iniciar sesión");
+			return "error";
 		}
 	}
 }

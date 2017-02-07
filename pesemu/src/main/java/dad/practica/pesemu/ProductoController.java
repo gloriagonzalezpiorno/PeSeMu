@@ -17,6 +17,7 @@ import dad.practica.pesemu.model.Producto;
 
 @Controller
 public class ProductoController {
+
 	@Autowired
 	private ProductoRepository productoRepository;
 	
@@ -48,7 +49,7 @@ public class ProductoController {
 	
 	//Vemos los productos que tenemos en la base de datos
 	//TENGO QUE CONSEGUIR MOSTRAR LAS OPINIONES--------------------------------------
-	@RequestMapping("/")
+	@RequestMapping("/productos")
 	public String tablon(Model model, Pageable page) {
 		model.addAttribute("productos", productoRepository.findAll(page));
 		return "ver_productos"; 

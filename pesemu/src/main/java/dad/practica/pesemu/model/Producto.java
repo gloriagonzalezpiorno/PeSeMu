@@ -21,7 +21,7 @@ public class Producto {
 	
 	private String nombre;
 	private String descripcion;
-	private double precio;
+	private double precio; 
 	
 
 	//lista de opiniones de cada producto

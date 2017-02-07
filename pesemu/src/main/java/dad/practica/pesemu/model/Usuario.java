@@ -1,15 +1,24 @@
 package dad.practica.pesemu.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;//para las opiniones
+import javax.persistence.OneToOne;//para el carrito
 
+@Entity
 public class Usuario {
 
 	// Nivel de privilegio (1 admin) (0 cliente)
 	// private int privilegio;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String nombre;
 	private String apellidos;
 
@@ -19,7 +28,10 @@ public class Usuario {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	//lista de opiniones de cada producto
-	private List<Opinion> opiniones;
+	private List<Opinion> opiniones=new ArrayList<>();
+	// TODO faltan gets y sets del carrito
+	@OneToOne(cascade=CascadeType.ALL)
+	private CarritoCompra carrito=new CarritoCompra();
 
 	public Usuario() {
 		
