@@ -22,6 +22,8 @@ public class Producto {
 	private String nombre;
 	private String descripcion;
 	private double precio; 
+	private String tipo;
+	private String genero;
 	
 
 	//lista de opiniones de cada producto
@@ -33,12 +35,16 @@ public class Producto {
 	}
 	
 	
-	
-	public Producto(String nombre, String descripcion, double precio) {
+
+
+
+	public Producto(String nombre, String descripcion, double precio, String tipo, String genero) {
+		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
-
+		this.tipo = tipo;
+		this.genero = genero;
 	}
 
 
@@ -86,8 +92,39 @@ public class Producto {
 
 
 	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+
+
+
+	public String getGenero() {
+		return genero;
+	}
+
+
+
+
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+
 	//get y set para las opiniones
 	
+
+
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}

@@ -12,8 +12,8 @@ public class Opinion {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
 	private String contenido;
+
 	
 	
 

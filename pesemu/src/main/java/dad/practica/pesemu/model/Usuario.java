@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;//para las opiniones
 import javax.persistence.OneToOne;//para el carrito
 
+
 @Entity
 public class Usuario {
 
@@ -24,18 +25,19 @@ public class Usuario {
 	// Se logeara con su correo y su contraseña
 	private String correo;
 	private String contrasena;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	//lista de opiniones de cada producto
-	private List<Opinion> opiniones=new ArrayList<>();
+
+	// un producto puede tener varias opiniones pero una opinión pertenece a un
+	// único producto
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Opinion> opiniones = new ArrayList<>();
 	// TODO faltan gets y sets del carrito
-	@OneToOne(cascade=CascadeType.ALL)
-	private CarritoCompra carrito=new CarritoCompra();
+	@OneToOne(cascade = CascadeType.ALL)
+	private CarritoCompra carrito = new CarritoCompra();
 
 	public Usuario() {
-		
+
 	}
-	
+
 	public Usuario(String nombre, String apellidos, String correo, String contraseña) {
 		super();
 		this.nombre = nombre;
@@ -74,6 +76,14 @@ public class Usuario {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	public List<Opinion> getOpiniones() {
+		return opiniones;
+	}
+
+	public void setOpiniones(List<Opinion> opiniones) {
+		this.opiniones = opiniones;
 	}
 
 	@Override

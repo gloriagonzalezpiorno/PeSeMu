@@ -4,13 +4,32 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<form action="producto/nuevo" method="post">
+	<form action="catalogo/nuevoProducto" method="post">
 		<p>Nombre:</p>
 		<input type='text' name='nombre'/>
 		<p>Descripción:</p>
 		<textarea name='descripcion' rows=5 cols=40></textarea>>
 		<p>Precio:</p>
 		<input type='text' name='precio'/>
+		<p>Tipo:</p>
+   		<select name="tipo">    
+       		<option value="pelicula" selected="selected">Película</option>
+       		<option value="serie">Serie</option>
+      		 <option value="musica">Música</option>
+   		</select>
+		<p>Género:</p>
+   		<select name="genero">    
+       		<option value="accion" selected="selected">accion</option>
+       		<option value="comedia">comedia</option>
+      		<option value="romanticas">romanticas</option>
+      		<option value="codumentales">documentales</option>
+      		<option value="policiacas">policiacas</option>
+      		<option value="animadas">animadas</option>
+      		<option value="electronica">electronica</option>
+      		<option value="pop">pop</option>
+      		<option value="rock">rock</option>
+      		
+   		</select>		
 		<input type='submit' value='Enviar'/>
 	</form>
 </body>

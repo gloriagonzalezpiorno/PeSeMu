@@ -6,13 +6,15 @@
 <body>
 	<p>Nombre: {{producto.nombre}}</p>
 	<p>Descripción: {{producto.descripcion}}</p>
-	<p>Precio: {{producto.precio}}</p> 
-     <p>Opiniones:</p>
-    <ul>
-    {{#producto.opiniones}}
-    	<li>{{.}}</li>
-    {{/producto.opiniones}}
-	 </ul> 
-	<a href="/productos">Volver a la lista de productos</a>
+	<p>Precio: {{producto.precio}}</p>
+	<p>Opiniones:</p>
+	<ul>
+		{{#producto.opiniones}}
+		<li>{{.}}</li>
+		{{/producto.opiniones}}
+	</ul>
+	<a href="{{producto.id}}/opinion">Dar una nueva opinión</a>
+	<br>
+	<a href="/catalogo/{{producto.tipo}}/{{producto.genero}}">Volver a la lista de productos</a>
 </body>
-</html> 
+</html>

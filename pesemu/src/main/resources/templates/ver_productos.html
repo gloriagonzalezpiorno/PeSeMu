@@ -1,11 +1,10 @@
 <html>
 <body>
-<h1>PeSeMu</h1>
-{{#productos}}
-<a href="producto/{{id}}">{{nombre}}</a><br>
-{{/productos}}
-<br>
-<a href="nuevoProducto.html">Nuevo producto</a>
-
+	<h1>PeSeMu</h1>
+	{{#productos}}
+	<a href="/catalogo/{{tipo}}/{{genero}}/{{id}}">{{nombre}}</a>
+	<br> {{/productos}}
+	<br>
+	<a href="/nuevo_producto.html">Nuevo producto</a>
 </body>
 </html>
