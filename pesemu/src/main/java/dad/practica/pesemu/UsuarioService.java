@@ -17,7 +17,7 @@ public class UsuarioService {
 	}
 
 	public Usuario registrarUsuario(Usuario usuario) {
-		if (usuarioRepository.findOne(usuario.getCorreo()) == null) {
+		if (usuarioRepository.findByCorreo(usuario.getCorreo()) == null) {
 			return usuarioRepository.save(usuario);
 		} else {
 			return null;
