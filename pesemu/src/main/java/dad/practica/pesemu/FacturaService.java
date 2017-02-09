@@ -12,7 +12,11 @@ import dad.practica.pesemu.model.Factura;
 @Service
 public class FacturaService {
 
-	public void crearFactura(CarritoCompra compra){
+	// TODO
+	// Recibe compra como parametro
+	// deberia recibir el id de la compra
+	// hacer una consulta a la BBDD (apoyandose en el servicio) 
+	public void crearFactura(CarritoCompra compra) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("factura.txt"));
 			pw.print(new Factura(compra));

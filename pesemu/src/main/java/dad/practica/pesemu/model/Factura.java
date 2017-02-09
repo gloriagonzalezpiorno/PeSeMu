@@ -22,5 +22,5 @@ public class Factura {
 	public String toString() {
 		return texto;
 	}
-	
+
 }

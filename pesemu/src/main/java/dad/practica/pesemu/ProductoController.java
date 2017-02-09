@@ -94,6 +94,12 @@ public class ProductoController {
 
 		return "nueva_opinion";
 
+	// Insertar producto en el carrito
+	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirCarrito")
+	public String aniadirCarrito(Model model, @PathVariable long id, HttpSession sesion){
+		Usuario usuario = (Usuario) sesion.getAttribute("infoUsuario");
+		usuario.getCarrito().anadirProducto(productoRepository.findOne(id));
+		return "producto_aniadido_carrito";
 	}
 	
 	//Insertamos una nueva opinión
