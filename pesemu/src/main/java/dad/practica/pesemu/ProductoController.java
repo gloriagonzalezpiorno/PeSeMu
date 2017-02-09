@@ -52,7 +52,7 @@ public class ProductoController {
 		model.addAttribute("tipo", tipo);
 		switch (tipo) {
 		case "pelicula":
-			model.addAttribute("generos", Arrays.asList("accion", "comedias", "romanticas"));
+			model.addAttribute("generos", Arrays.asList("accion", "comedia", "romanticas"));
 			break;
 		case "serie":
 			model.addAttribute("generos", Arrays.asList("animadas", "documentales", "policiacas"));
@@ -60,7 +60,7 @@ public class ProductoController {
 		case "musica":
 			model.addAttribute("generos", Arrays.asList("electronica", "pop", "rock"));
 		}
-		return "catalogo_tipos";
+		return "catalogo_generos";
 	}
 	
 	@GetMapping("catalogo/{tipo}/{genero}")
@@ -86,18 +86,23 @@ public class ProductoController {
 	}
 	
 	//Vemos la opinion de un producto
-	@RequestMapping("/producto/{id}/opinion")
-	public String nuevoProducto(Model model, @PathVariable long id) {
-		model.addAttribute("idProducto",id);
+	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion")
+	public String nuevoProducto(Model model,@PathVariable String tipo,@PathVariable String genero, @PathVariable long id) {
+		model.addAttribute("tipo",tipo);
+		model.addAttribute("genero",genero);
+		model.addAttribute("id",id);
+
 		return "nueva_opinion";
 
 	}
 	
 	//Insertamos una nueva opinión
-		@RequestMapping("/producto/{id}/opinion/nueva")
-		public String nuevoProducto(Model model, @PathVariable long id, Opinion opinion) {
-			productoRepository.findOne(id).getOpiniones().add(opinion);
-			productoRepository.save(productoRepository.findOne(id));
+		@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion/nueva")
+		public String nuevoProducto(Model model, @PathVariable String tipo,@PathVariable String genero,@PathVariable long id, Opinion opinion) {
+			
+			Producto producto=productoRepository.findOne(id);
+			producto.getOpiniones().add(opinion);
+			productoRepository.save(producto);
 			return "opinion_guardada";
 		}
 	
