@@ -3,6 +3,7 @@ package dad.practica.pesemu;
 import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
+import dad.practica.pesemu.model.Usuario;
 
 @Controller
 public class ProductoController {
@@ -75,6 +77,15 @@ public class ProductoController {
 		return "producto_guardado";
 	}
 
+	// Insertar producto en el carrito
+	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirCarrito")
+	public String aniadirCarrito(Model model, @PathVariable long id, HttpSession sesion){
+		Usuario usuario = (Usuario) sesion.getAttribute("infoUsuario");
+		usuario.getCarrito().anadirProducto(productoRepository.findOne(id));
+		return "producto_aniadido_carrito";
+	}
+	
+	
 	// Vemos la opinion de un producto
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion")
 	public String nuevoProducto(Model model, @PathVariable String tipo, @PathVariable String genero,

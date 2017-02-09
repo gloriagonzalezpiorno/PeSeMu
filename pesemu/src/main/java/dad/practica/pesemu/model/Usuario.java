@@ -1,13 +1,10 @@
 package dad.practica.pesemu.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;//para las opiniones
 import javax.persistence.OneToOne;//para el carrito
 
 @Entity
@@ -25,13 +22,9 @@ public class Usuario {
 	private String correo;
 	private String contrasena;
 
-	// un producto puede tener varias opiniones pero una opinión pertenece a un
-	// único producto
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Opinion> opiniones = new ArrayList<>();
 	// TODO faltan gets y sets del carrito
 	@OneToOne(cascade = CascadeType.ALL)
-	private CarritoCompra carrito = new CarritoCompra();
+	private CarritoCompra carrito;
 
 	public Usuario() {
 
@@ -77,12 +70,12 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
-	public List<Opinion> getOpiniones() {
-		return opiniones;
+	public CarritoCompra getCarrito() {
+		return carrito;
 	}
 
-	public void setOpiniones(List<Opinion> opiniones) {
-		this.opiniones = opiniones;
+	public void setCarrito(CarritoCompra carrito) {
+		this.carrito = carrito;
 	}
 
 	@Override

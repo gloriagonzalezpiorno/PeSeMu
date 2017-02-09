@@ -7,8 +7,6 @@ import dad.practica.pesemu.model.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
-	Producto findByNombre(String name);
-
 	List<Producto> findByTipoAndGenero(String tipo, String genero);
 
 }

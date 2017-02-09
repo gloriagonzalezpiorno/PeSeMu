@@ -2,6 +2,7 @@ package dad.practica.pesemu.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class CarritoCompra {
 	private long id;
 
 	@OneToMany
-	private List<Producto> productos; // TODO inicializar
+	private List<Producto> productos = new ArrayList<>(); // TODO inicializar
 
 	@OneToOne(mappedBy = "carrito")
 	private Usuario usuario;
@@ -27,6 +28,7 @@ public class CarritoCompra {
 	private double precioTotal;
 	private String fecha;
 
+	
 	public CarritoCompra() {
 		// SpringData
 	}

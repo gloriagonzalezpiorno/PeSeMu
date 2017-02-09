@@ -2,11 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Ver producto</title>
 </head>
 <body>
+	<h3>Producto</h3>
 	<p>Nombre: {{producto.nombre}}</p>
 	<p>Descripción: {{producto.descripcion}}</p>
 	<p>Precio: {{producto.precio}}</p>
+	<a href="{{producto.id}}/aniadirCarrito">Añadir a carrito</a>
 	<p>Opiniones:</p>
 	<ul>
 		{{#producto.opiniones}}
@@ -15,6 +18,7 @@
 	</ul>
 	<a href="{{producto.id}}/opinion">Dar una nueva opinión</a>
 	<br>
-	<a href="/catalogo/{{producto.tipo}}/{{producto.genero}}">Volver a la lista de productos</a>
+	<a href="/catalogo/{{producto.tipo}}/{{producto.genero}}">Volver a
+		la lista de productos</a>
 </body>
 </html>
