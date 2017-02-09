@@ -10,7 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;//para las opiniones
 import javax.persistence.OneToOne;//para el carrito
 
-
 @Entity
 public class Usuario {
 

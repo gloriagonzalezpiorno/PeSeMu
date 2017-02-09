@@ -11,24 +11,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class CarritoCompra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@OneToMany
-	private List<Producto> productos; //TODO inicializar
-	
-	@OneToOne(mappedBy="carrito")
+	private List<Producto> productos; // TODO inicializar
+
+	@OneToOne(mappedBy = "carrito")
 	private Usuario usuario;
-	
+
 	private double precioTotal;
 	private String fecha;
-	
-	
+
 	public CarritoCompra() {
 		// SpringData
 	}
@@ -65,15 +63,15 @@ public class CarritoCompra {
 		this.fecha = fecha;
 	}
 
-	public void anadirProducto(Producto producto){
+	public void anadirProducto(Producto producto) {
 		productos.add(producto);
 		precioTotal += producto.getPrecio();
 	}
-	
-	public void comprar(){
+
+	public void cerrarCompra() {
 		fecha = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
 		// Eliminar productos de la base de datos
 		// Eliminar saldo del cliente
 	}
-	
- }
+
+}

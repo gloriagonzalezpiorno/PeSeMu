@@ -5,27 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
 @Entity
 public class Opinion {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String contenido;
 
-	
-	
-
 	public Opinion() {
-	
+
 	}
-	
+
 	public Opinion(String contenido) {
 		super();
 		this.contenido = contenido;
 	}
-
 
 	public String getContenido() {
 		return contenido;
@@ -35,14 +29,9 @@ public class Opinion {
 		this.contenido = contenido;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return contenido;
 	}
 
-
-	
-	
 }
