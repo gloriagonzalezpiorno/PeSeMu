@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Opinion {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -19,6 +20,14 @@ public class Opinion {
 	public Opinion(String contenido) {
 		super();
 		this.contenido = contenido;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getContenido() {

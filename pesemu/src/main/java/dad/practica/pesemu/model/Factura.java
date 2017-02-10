@@ -14,7 +14,7 @@ public class Factura {
 		for (Producto producto : compra.getProductos()) {
 			sb.append("\t" + producto.getNombre() + ":\t" + producto.getPrecio() + "\n");
 		}
-		sb.append("Precio total: " + compra.getPrecioTotal() + "\n");
+		sb.append("Precio total: " + compra.getCosteTotal() + "\n");
 		texto = sb.toString();
 	}
 

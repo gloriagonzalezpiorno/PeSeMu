@@ -21,8 +21,8 @@ public class Usuario {
 	// Se logeara con su correo y su contraseña
 	private String correo;
 	private String contrasena;
+	private float saldo;
 
-	// TODO faltan gets y sets del carrito
 	@OneToOne(cascade = CascadeType.ALL)
 	private CarritoCompra carrito;
 
@@ -36,6 +36,14 @@ public class Usuario {
 		this.apellidos = apellidos;
 		this.correo = correo;
 		this.contrasena = contraseña;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -70,6 +78,14 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
+	public float getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
 	public CarritoCompra getCarrito() {
 		return carrito;
 	}
@@ -80,7 +96,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return nombre + " " + apellidos;
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo=" + correo
+				+ ", contrasena=" + contrasena + ", carrito=" + carrito + "]";
 	}
+
 
 }
