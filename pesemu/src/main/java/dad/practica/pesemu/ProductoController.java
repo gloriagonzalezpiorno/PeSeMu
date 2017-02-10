@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
+import dad.practica.pesemu.model.Usuario;
 
 
 @Controller
@@ -91,8 +93,10 @@ public class ProductoController {
 		model.addAttribute("tipo",tipo);
 		model.addAttribute("genero",genero);
 		model.addAttribute("id",id);
-
 		return "nueva_opinion";
+	}
+	
+	
 
 	// Insertar producto en el carrito
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirCarrito")

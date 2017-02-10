@@ -31,6 +31,7 @@ public class UsuarioController {
 	@PostMapping("inicio/sesion")
 	public String inicioSesion(Model model, HttpSession sesion, @RequestParam String correo,
 			@RequestParam String contrasena) {
+		
 		Usuario usuarioGuardado = usuarioServie.validarUsuario(correo, contrasena);
 		if (usuarioGuardado != null) {
 			sesion.setAttribute("infoUsuario", usuarioGuardado);
