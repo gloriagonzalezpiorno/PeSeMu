@@ -2,9 +2,9 @@ package dad.practica.pesemu.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,18 +19,25 @@ public class CarritoCompra {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToMany
-	private List<Producto> productos = new ArrayList<>(); // TODO inicializar
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Producto> productos;
 
 	@OneToOne(mappedBy = "carrito")
 	private Usuario usuario;
 
-	private double precioTotal;
+	private float costeTotal;
 	private String fecha;
 
-	
 	public CarritoCompra() {
-		// SpringData
+
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public List<Producto> getProductos() {
@@ -49,12 +56,12 @@ public class CarritoCompra {
 		this.usuario = usuario;
 	}
 
-	public double getPrecioTotal() {
-		return precioTotal;
+	public float getCosteTotal() {
+		return costeTotal;
 	}
 
-	public void setPrecioTotal(double precioTotal) {
-		this.precioTotal = precioTotal;
+	public void setCosteTotal(float precioTotal) {
+		this.costeTotal = precioTotal;
 	}
 
 	public String getFecha() {
@@ -65,15 +72,31 @@ public class CarritoCompra {
 		this.fecha = fecha;
 	}
 
-	public void anadirProducto(Producto producto) {
+	public void aniadirProducto(Producto producto) {
 		productos.add(producto);
-		precioTotal += producto.getPrecio();
+		costeTotal = Float.sum(costeTotal, producto.getPrecio());
 	}
 
-	public void cerrarCompra() {
-		fecha = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
-		// Eliminar productos de la base de datos
-		// Eliminar saldo del cliente
+	public boolean cerrarCompra() {
+		System.out.println(usuario.getSaldo());
+		if (costeTotal < usuario.getSaldo()) {
+			usuario.setSaldo(usuario.getSaldo() - costeTotal);
+			fecha = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void reiniciarCarrito() {
+		costeTotal = 0;
+		productos.clear();
+	}
+
+	@Override
+	public String toString() {
+		return "CarritoCompra [id=" + id + ", productos=" + productos.toString() + ", usuario=" + usuario
+				+ ", precioTotal=" + costeTotal + ", fecha=" + fecha + "]";
 	}
 
 }

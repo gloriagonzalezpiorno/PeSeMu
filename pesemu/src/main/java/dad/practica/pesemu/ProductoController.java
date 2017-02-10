@@ -1,7 +1,6 @@
 package dad.practica.pesemu;
 
 import java.util.Arrays;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -25,9 +24,6 @@ public class ProductoController {
 
 	@Autowired
 	private ProductoRepository productoRepository;
-	
-	//@Autowired
-	//private OpinionRepository opinionRepository;
 	
 	
 	@PostConstruct
@@ -78,7 +74,6 @@ public class ProductoController {
 		return "ver_producto";
 	}
 	
-	//TODO cambiar codigo
 	
 	//Insertamos un nuevo producto
 	@RequestMapping("catalogo/nuevoProducto")

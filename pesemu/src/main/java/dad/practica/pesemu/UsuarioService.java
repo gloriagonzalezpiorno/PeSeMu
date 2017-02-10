@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import dad.practica.pesemu.model.CarritoCompra;
 import dad.practica.pesemu.model.Usuario;
 
 @Service
@@ -18,6 +20,7 @@ public class UsuarioService {
 
 	public Usuario registrarUsuario(Usuario usuario) {
 		if (usuarioRepository.findByCorreo(usuario.getCorreo()) == null) {
+			usuario.setCarrito(new CarritoCompra());
 			return usuarioRepository.save(usuario);
 		} else {
 			return null;

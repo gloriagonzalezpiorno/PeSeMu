@@ -19,21 +19,20 @@ public class Producto {
 
 	private String nombre;
 	private String descripcion;
-	private double precio;
+	private float precio;
 	private String tipo;
 	private String genero;
 
+	
 	// lista de opiniones de cada producto
-	@OneToMany(cascade = CascadeType.ALL) // relación 1:N, un producto puede
-											// tener varias opiniones, si
-											// borramos el producto se borran
-											// sus opiniones
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Opinion> opiniones = new ArrayList<>();
 
 	protected Producto() {
+		
 	}
 
-	public Producto(String nombre, String descripcion, double precio, String tipo, String genero) {
+	public Producto(String nombre, String descripcion, float precio, String tipo, String genero) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -66,7 +65,7 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 

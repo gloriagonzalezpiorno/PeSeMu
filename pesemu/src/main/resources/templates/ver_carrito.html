@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ver carrito</title>
+</head>
+<body>
+	<h1>PeSeMu</h1>
+	<h3>Productos del carrito de la compra</h3>
+	<p> Usuario: {{nombreUsuario}} </p>
+	<p> Saldo: {{saldoUsuario}} </p>
+	<a href="anyadirSaldo">Añadir saldo a la cuenta</a>
+	<br>
+	{{#productos}}
+	{{.}}
+	<br> {{/productos}}
+	<br>
+	<p> Coste total: {{costeTotal}} <p>
+	<a href="comprar">Finalizar compra</a>
+	<br>
+	<a href="/index.html">Volver a inicio</a>
+</body>
+</html>

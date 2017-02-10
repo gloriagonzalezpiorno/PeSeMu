@@ -25,5 +25,6 @@ public class FacturaService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		compra.reiniciarCarrito(); 
 	}
 }
