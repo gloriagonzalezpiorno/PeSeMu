@@ -1,7 +1,7 @@
 ------- Compra PeSeMu ------
 Usuario: a
 Correo: a
-Fecha: 2017-02-10
+Fecha: 2017-02-11
 Productos: 
-	Titanic:	10.99
-Precio total: 10.99
+	burial:	5.0
+Precio total: 5.0

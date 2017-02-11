@@ -1,4 +1,4 @@
-package dad.practica.pesemu;
+package dad.practica.pesemu.repositories;
 
 import java.util.List;
 

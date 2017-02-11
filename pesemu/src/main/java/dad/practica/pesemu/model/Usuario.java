@@ -26,6 +26,7 @@ public class Usuario {
 	@OneToOne(cascade = CascadeType.ALL)
 	private CarritoCompra carrito;
 
+	
 	public Usuario() {
 
 	}

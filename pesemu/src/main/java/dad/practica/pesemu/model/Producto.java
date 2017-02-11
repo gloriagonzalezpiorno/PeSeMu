@@ -23,12 +23,12 @@ public class Producto {
 	private String tipo;
 	private String genero;
 
-	
 	// lista de opiniones de cada producto
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Opinion> opiniones = new ArrayList<>();
 
-	protected Producto() {
+	
+	public Producto() {
 		
 	}
 

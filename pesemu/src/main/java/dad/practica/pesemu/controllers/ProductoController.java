@@ -1,4 +1,4 @@
-package dad.practica.pesemu;
+package dad.practica.pesemu.controllers;
 
 import java.util.Arrays;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
+import dad.practica.pesemu.repositories.ProductoRepository;
 
 @Controller
 public class ProductoController {
@@ -37,6 +38,8 @@ public class ProductoController {
 
 	}
 
+	// Devuelve una vista con los distintos géneros del tipo de producto
+	// seleccionado (película, serie o música)
 	@RequestMapping("catalogo")
 	public String catalogo(Model model, @RequestParam String tipo) {
 		model.addAttribute("tipo", tipo);
@@ -53,26 +56,26 @@ public class ProductoController {
 		return "catalogo_generos";
 	}
 
+	// Devuelve una vista con una lista de todos los productos de un determinado
+	// tipo y género
 	@RequestMapping("catalogo/{tipo}/{genero}")
 	public String verProductos(Model model, @PathVariable String tipo, @PathVariable String genero) {
 		model.addAttribute("productos", productoRepository.findByTipoAndGenero(tipo, genero));
-		return "ver_productos";
+		return "lista_productos";
 	}
 
+	// Devuelve una vista con toda la información de un producto
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}")
 	public String verProducto(Model model, @PathVariable long id) {
 		model.addAttribute("producto", productoRepository.findOne(id));
-		return "ver_producto";
+		return "producto";
 	}
 
-	// Insertamos un nuevo producto
+	// Insertamos un nuevo producto en la BBDD
 	@RequestMapping("catalogo/nuevoProducto")
 	public String nuevoProducto(Model model, Producto producto) {
 		productoRepository.save(producto);
 		return "producto_guardado";
 	}
-
-
-	
 
 }
