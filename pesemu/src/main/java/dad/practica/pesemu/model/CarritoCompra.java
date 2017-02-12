@@ -83,7 +83,7 @@ public class CarritoCompra {
 	}
 
 	public boolean puedeComprar() {
-		return costeTotal <= usuario.getSaldo();
+		return (costeTotal <= usuario.getSaldo()) && (!productos.isEmpty());
 	}
 
 	public void finalizarCompra() {

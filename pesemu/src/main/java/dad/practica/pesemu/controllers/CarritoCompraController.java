@@ -104,7 +104,7 @@ public class CarritoCompraController {
 				usuarioRepository.save(usuario);
 				return "compra_finalizada";
 			} else {
-				model.addAttribute("mensaje", "No tienes suficiente dinero en la cuenta");
+				model.addAttribute("mensaje", "No se puede realizar la compra");
 				return "fallo";
 			}
 		} else {

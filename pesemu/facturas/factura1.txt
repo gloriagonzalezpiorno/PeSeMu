@@ -3,5 +3,5 @@ Usuario: a
 Correo: a
 Fecha: 2017-02-12
 Productos: 
-	Ladygaga - Just Dance:	20.0
-Precio total: 20.0
+	Titanic:	10.99
+Precio total: 10.99
