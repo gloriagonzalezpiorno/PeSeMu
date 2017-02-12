@@ -1,0 +1,7 @@
+------- Compra PeSeMu ------
+Usuario: a
+Correo: a
+Fecha: 2017-02-12
+Productos: 
+	Ladygaga - Just Dance:	20.0
+Precio total: 20.0
