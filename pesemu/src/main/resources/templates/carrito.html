@@ -7,15 +7,15 @@
 <body>
 	<h1>PeSeMu</h1>
 	<h3>Productos del carrito de la compra</h3>
-	<p> Usuario: {{nombreUsuario}} </p>
-	<p> Saldo: {{saldoUsuario}} </p>
-	<a href="anyadirSaldo">Añadir saldo a la cuenta</a>
+	<p>Usuario: {{nombreUsuario}}</p>
+	<p>Saldo: {{saldoUsuario}}</p>
+	<a href="aniadir_saldo.html">Añadir saldo a la cuenta</a>
 	<br>
-	{{#productos}}
-	{{.}}
+	<p>Productos en el carrito:</p>
+	{{#productos}} {{.}}
 	<br> {{/productos}}
 	<br>
-	<p> Coste total: {{costeTotal}} <p>
+	<p>Coste total: {{costeTotal}}</p>
 	<a href="comprar">Finalizar compra</a>
 	<br>
 	<a href="/index.html">Volver a inicio</a>

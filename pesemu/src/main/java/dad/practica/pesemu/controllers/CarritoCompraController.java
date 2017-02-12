@@ -21,13 +21,13 @@ import dad.practica.pesemu.services.FacturaService;
 public class CarritoCompraController {
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	@Autowired
-	ProductoRepository productoRepository;
+	private ProductoRepository productoRepository;
 
 	@Autowired
-	FacturaService facturaService;
+	private FacturaService facturaService;
 
 	// Insertar producto en el carrito del usuario
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirCarrito")

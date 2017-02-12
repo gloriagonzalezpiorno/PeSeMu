@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.CarritoCompra;
@@ -59,5 +60,14 @@ public class UsuarioController {
 			model.addAttribute("mensaje", "Error al iniciar sesión");
 			return "fallo";
 		}
+	}
+	
+	// Añadir saldo a la cuenta del usuario
+	@RequestMapping("aniadirSaldo")
+	public String aniadirSaldo(Model model, HttpSession sesion, @RequestParam float cantidad){
+		Usuario usuario = usuarioRepository.findOne((long) sesion.getAttribute("idUsuario"));
+		usuario.setSaldo(Float.sum(usuario.getSaldo(), cantidad));
+		usuarioRepository.save(usuario);
+		return "saldo_aniadido";
 	}
 }

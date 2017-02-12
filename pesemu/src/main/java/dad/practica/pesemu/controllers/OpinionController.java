@@ -14,7 +14,7 @@ import dad.practica.pesemu.repositories.ProductoRepository;
 public class OpinionController {
 
 	@Autowired
-	ProductoRepository productoRepository;
+	private ProductoRepository productoRepository;
 
 	// Devuelve un formulario al que le pasa la información del producto a
 	// comentar
