@@ -76,6 +76,11 @@ public class CarritoCompra {
 		productos.add(producto);
 		costeTotal = Float.sum(costeTotal, producto.getPrecio());
 	}
+	
+	public void eliminarProducto(Producto producto) {
+		productos.remove(producto);
+		costeTotal = Float.sum(costeTotal, -producto.getPrecio());
+	}
 
 	public boolean puedeComprar() {
 		return costeTotal <= usuario.getSaldo();

@@ -12,7 +12,7 @@
 	<a href="aniadir_saldo.html">Añadir saldo a la cuenta</a>
 	<br>
 	<p>Productos en el carrito:</p>
-	{{#productos}} {{.}}
+	{{#productos}} {{.}} <a href='carrito/{{id}}/eliminarDeCarrito'> Eliminar</a>
 	<br> {{/productos}}
 	<br>
 	<p>Coste total: {{costeTotal}}</p>

@@ -75,7 +75,8 @@ public class ProductoController {
 	@RequestMapping("catalogo/nuevoProducto")
 	public String nuevoProducto(Model model, Producto producto) {
 		productoRepository.save(producto);
-		return "producto_guardado";
+		model.addAttribute("operacion", "añadido al stock");
+		return "producto_operacion";
 	}
 
 }
