@@ -1,4 +1,4 @@
-package dad.practica.pesemu;
+package dad.practica.pesemu.controllers;
 
 import java.util.ArrayList;
 
@@ -9,17 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.CarritoCompra;
 import dad.practica.pesemu.model.Usuario;
+import dad.practica.pesemu.repositories.UsuarioRepository;
 
 @Controller
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioService usuarioServie;
-	
+	private UsuarioRepository usuarioRepository;
+
 	@PostConstruct
 	public void init() {
 		Usuario usuario = new Usuario("a", "a", "a", "a");
@@ -27,33 +29,45 @@ public class UsuarioController {
 		carrito.setProductos(new ArrayList<>());
 		usuario.setCarrito(carrito);
 		usuario.setSaldo(100);
-		usuarioServie.registrarUsuario(usuario);
+		usuarioRepository.save(usuario);
 	}
 
-	@PostMapping("usuario/nuevo")
+	// Registro de un nuevo usuario
+	@PostMapping("usuarioNuevo")
 	public String nuevoUsuario(Model model, Usuario usuario) {
-		Usuario usuarioGuardado = usuarioServie.registrarUsuario(usuario);
-		if (usuarioGuardado != null) {
+		// Si no existe un usuario con el mismo correo, se registra
+		if (usuarioRepository.findByCorreo(usuario.getCorreo()) == null) {
+			usuario.setCarrito(new CarritoCompra());
+			usuarioRepository.save(usuario);
 			model.addAttribute("nombre", usuario.getNombre());
 			return "usuario_registrado";
 		} else {
 			model.addAttribute("mensaje", "Error al registrar usuario");
-			return "vista_error";
+			return "fallo";
 		}
 	}
 
-	@PostMapping("inicio/sesion")
+	// Inicio de sesión de un usuario
+	@PostMapping("inicioSesion")
 	public String inicioSesion(Model model, HttpSession sesion, @RequestParam String correo,
 			@RequestParam String contrasena) {
-		
-		Usuario usuarioGuardado = usuarioServie.validarUsuario(correo, contrasena);
+		Usuario usuarioGuardado = usuarioRepository.findByCorreoAndContrasena(correo, contrasena);
 		if (usuarioGuardado != null) {
 			sesion.setAttribute("idUsuario", usuarioGuardado.getId());
 			model.addAttribute("nombre", usuarioGuardado.getNombre());
 			return "sesion_iniciada";
 		} else {
 			model.addAttribute("mensaje", "Error al iniciar sesión");
-			return "vista_error";
+			return "fallo";
 		}
+	}
+	
+	// Añadir saldo a la cuenta del usuario
+	@RequestMapping("aniadirSaldo")
+	public String aniadirSaldo(Model model, HttpSession sesion, @RequestParam float cantidad){
+		Usuario usuario = usuarioRepository.findOne((long) sesion.getAttribute("idUsuario"));
+		usuario.setSaldo(Float.sum(usuario.getSaldo(), cantidad));
+		usuarioRepository.save(usuario);
+		return "saldo_aniadido";
 	}
 }

@@ -1,4 +1,4 @@
-package dad.practica.pesemu;
+package dad.practica.pesemu.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
+import dad.practica.pesemu.repositories.ProductoRepository;
 
 @Controller
 public class OpinionController {
 
 	@Autowired
-	ProductoRepository productoRepository;
-	
-	// Vemos la opinion de un producto
+	private ProductoRepository productoRepository;
+
+	// Devuelve un formulario al que le pasa la información del producto a
+	// comentar
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion")
 	public String nuevaOpinion(Model model, @PathVariable String tipo, @PathVariable String genero,
 			@PathVariable long id) {
@@ -26,6 +28,8 @@ public class OpinionController {
 	}
 
 	// Insertamos una nueva opinión
+	// Encuentra el producto sobre el que se va a opinar, le añade la nueva
+	// opinion y lo actualiza en la tabla de la bbdd
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion/nueva")
 	public String guardaOpinion(Model model, @PathVariable long id, Opinion opinion) {
 		Producto producto = productoRepository.findOne(id);

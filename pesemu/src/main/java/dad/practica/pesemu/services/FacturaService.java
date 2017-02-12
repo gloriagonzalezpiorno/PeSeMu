@@ -1,4 +1,4 @@
-package dad.practica.pesemu;
+package dad.practica.pesemu.services;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,10 +12,6 @@ import dad.practica.pesemu.model.Factura;
 @Service
 public class FacturaService {
 
-	// TODO
-	// Recibe compra como parametro
-	// deberia recibir el id de la compra
-	// hacer una consulta a la BBDD (apoyandose en el servicio) 
 	public void crearFactura(CarritoCompra compra) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("factura.txt"));
@@ -25,6 +21,5 @@ public class FacturaService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		compra.reiniciarCarrito(); 
 	}
 }

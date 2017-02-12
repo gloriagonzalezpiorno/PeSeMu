@@ -10,8 +10,6 @@ import javax.persistence.OneToOne;//para el carrito
 @Entity
 public class Usuario {
 
-	// Clave primaria correo?
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -26,6 +24,7 @@ public class Usuario {
 	@OneToOne(cascade = CascadeType.ALL)
 	private CarritoCompra carrito;
 
+	
 	public Usuario() {
 
 	}

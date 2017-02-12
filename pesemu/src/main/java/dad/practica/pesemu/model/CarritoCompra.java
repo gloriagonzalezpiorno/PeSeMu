@@ -2,9 +2,9 @@ package dad.practica.pesemu.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +19,8 @@ public class CarritoCompra {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Producto> productos;
+	@OneToMany
+	private List<Producto> productos = new ArrayList<>();
 
 	@OneToOne(mappedBy = "carrito")
 	private Usuario usuario;
@@ -77,17 +77,15 @@ public class CarritoCompra {
 		costeTotal = Float.sum(costeTotal, producto.getPrecio());
 	}
 
-	public boolean cerrarCompra() {
-		System.out.println(usuario.getSaldo());
-		if (costeTotal < usuario.getSaldo()) {
-			usuario.setSaldo(usuario.getSaldo() - costeTotal);
-			fecha = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
-			return true;
-		} else {
-			return false;
-		}
+	public boolean puedeComprar() {
+		return costeTotal <= usuario.getSaldo();
 	}
-	
+
+	public void finalizarCompra() {
+		usuario.setSaldo(usuario.getSaldo() - costeTotal);
+		fecha = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+	}
+
 	public void reiniciarCarrito() {
 		costeTotal = 0;
 		productos.clear();
