@@ -20,7 +20,7 @@ import dad.practica.pesemu.services.FacturaService;
 @Controller
 public class CarritoCompraController {
 
-	@Autowired
+	@Autowired 
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
@@ -30,16 +30,33 @@ public class CarritoCompraController {
 	private FacturaService facturaService;
 
 	// Insertar producto en el carrito del usuario
-	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirCarrito")
-	public String aniadirCarrito(Model model, @PathVariable long id, HttpSession sesion) {
+	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirACarrito")
+	public String aniadirACarrito(Model model, @PathVariable long id, HttpSession sesion) {
 		Object objId = sesion.getAttribute("idUsuario");
 		if (objId != null) {
 			Usuario usuario = usuarioRepository.findOne((long) objId);
 			usuario.getCarrito().aniadirProducto(productoRepository.findOne(id));
 			usuarioRepository.save(usuario);
-			return "producto_guardado";
+			model.addAttribute("operacion","añadido al carrito");
+			return "producto_operacion";
 		} else {
 			model.addAttribute("mensaje", "Debes registrarte para añadir un producto al carrito");
+			return "fallo";
+		}
+	}
+
+	// Eliminar producto del carrito del usuario
+	@RequestMapping("carrito/{id}/eliminarDeCarrito")
+	public String eliminarDeCarrito(Model model, @PathVariable long id, HttpSession sesion) {
+		Object objId = sesion.getAttribute("idUsuario");
+		if (objId != null) {
+			Usuario usuario = usuarioRepository.findOne((long) objId);
+			usuario.getCarrito().eliminarProducto(productoRepository.findOne(id));
+			usuarioRepository.save(usuario);
+			model.addAttribute("operacion", "eliminado del carrito");
+			return "producto_operacion";
+		} else {
+			model.addAttribute("mensaje", "Debes registrarte para eliminar un producto del carrito");
 			return "fallo";
 		}
 	}
@@ -70,11 +87,13 @@ public class CarritoCompraController {
 			if (usuario.getCarrito().puedeComprar()) {
 				usuario.getCarrito().finalizarCompra();
 				facturaService.crearFactura(usuario.getCarrito());
-				//Utilizamos una lista auxiliar para guardar las referencias a los productos
+				// Utilizamos una lista auxiliar para guardar las referencias a
+				// los productos
 				List<Producto> productos = new ArrayList<>();
 				productos.addAll(usuario.getCarrito().getProductos());
 				for (Producto producto : productos) {
-					// Eliminamos el producto de la lista "productos" del carrito (OneToMany)
+					// Eliminamos el producto de la lista "productos" del
+					// carrito (OneToMany)
 					usuario.getCarrito().getProductos().remove(producto);
 					// Eliminamos el producto del repositorio de productos
 					productoRepository.delete(producto);
@@ -85,7 +104,7 @@ public class CarritoCompraController {
 				usuarioRepository.save(usuario);
 				return "compra_finalizada";
 			} else {
-				model.addAttribute("mensaje", "No tienes suficiente dinero en la cuenta");
+				model.addAttribute("mensaje", "No se puede realizar la compra");
 				return "fallo";
 			}
 		} else {
@@ -93,5 +112,5 @@ public class CarritoCompraController {
 			return "fallo";
 		}
 	}
-
+ 
 }

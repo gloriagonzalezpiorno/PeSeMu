@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
@@ -15,7 +16,7 @@ public class OpinionController {
 
 	@Autowired
 	private ProductoRepository productoRepository;
-
+	
 	// Devuelve un formulario al que le pasa la información del producto a
 	// comentar
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion")
@@ -31,9 +32,9 @@ public class OpinionController {
 	// Encuentra el producto sobre el que se va a opinar, le añade la nueva
 	// opinion y lo actualiza en la tabla de la bbdd
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/opinion/nueva")
-	public String guardaOpinion(Model model, @PathVariable long id, Opinion opinion) {
+	public String guardaOpinion(Model model, @PathVariable long id, @RequestParam String contenido) {
 		Producto producto = productoRepository.findOne(id);
-		producto.getOpiniones().add(opinion);
+		producto.getOpiniones().add(new Opinion(contenido));
 		productoRepository.save(producto);
 		return "opinion_guardada";
 	}
