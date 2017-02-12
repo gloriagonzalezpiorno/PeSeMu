@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Ver producto</title>
+  <style type="text/css">
+  A:link, A:visited{text-decoration:none}
+  A{color:white}
+  body {
+    color: white;
+    background-color:black;
+    background-size: cover;
+    }
+  </style>
 </head>
 <body>
 	<h1>PeSeMu</h1>
@@ -10,6 +19,7 @@
 	<p>Nombre: {{producto.nombre}}</p>
 	<p>Descripción: {{producto.descripcion}}</p>
 	<p>Precio: {{producto.precio}}</p>
+	<br>
 	<a href="{{producto.id}}/aniadirCarrito">Añadir a carrito</a>
 	<p>Opiniones:</p>
 	<ul>

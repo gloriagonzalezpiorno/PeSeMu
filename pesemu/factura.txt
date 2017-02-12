@@ -1,7 +1,0 @@
-------- Compra PeSeMu ------
-Usuario: Daniel Jesús
-Correo: dj
-Fecha: 2017-02-11
-Productos: 
-	Titanic:	10.99
-Precio total: 10.99
