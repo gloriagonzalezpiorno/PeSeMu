@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dad.practica.pesemu.model.Factura;
 import dad.practica.pesemu.model.Producto;
 import dad.practica.pesemu.model.Usuario;
+import dad.practica.pesemu.repositories.FacturaRepository;
 import dad.practica.pesemu.repositories.ProductoRepository;
 import dad.practica.pesemu.repositories.UsuarioRepository;
 import dad.practica.pesemu.services.FacturaService;
@@ -25,6 +27,9 @@ public class CarritoCompraController {
 
 	@Autowired
 	private ProductoRepository productoRepository;
+	
+	@Autowired
+	private FacturaRepository facturaRepository;
 
 	@Autowired
 	private FacturaService facturaService;
@@ -86,7 +91,10 @@ public class CarritoCompraController {
 			Usuario usuario = usuarioRepository.findOne((long) objId);
 			if (usuario.getCarrito().puedeComprar()) {
 				usuario.getCarrito().finalizarCompra();
-				facturaService.crearFactura(usuario.getCarrito());
+				Factura factura=new Factura (usuario.getCarrito());
+				facturaService.crearFicheroFactura(factura);
+				Factura facturaGuardada = facturaRepository.save(factura);
+				
 				// Utilizamos una lista auxiliar para guardar las referencias a
 				// los productos
 				List<Producto> productos = new ArrayList<>();
@@ -102,6 +110,8 @@ public class CarritoCompraController {
 				usuario.getCarrito().reiniciarCarrito();
 				// Actualizamos el usuario en su repositorio
 				usuarioRepository.save(usuario);
+				
+				model.addAttribute("idFactura", facturaGuardada.getId());
 				return "compra_finalizada";
 			} else {
 				model.addAttribute("mensaje", "No se puede realizar la compra");

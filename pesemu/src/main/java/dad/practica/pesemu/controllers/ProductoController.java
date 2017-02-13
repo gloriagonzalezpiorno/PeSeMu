@@ -78,5 +78,7 @@ public class ProductoController {
 		model.addAttribute("operacion", "añadido al stock");
 		return "producto_operacion";
 	}
-
+	
+	
+	
 }

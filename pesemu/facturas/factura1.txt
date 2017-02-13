@@ -1,7 +1,0 @@
-------- Compra PeSeMu ------
-Usuario: a
-Correo: a
-Fecha: 2017-02-12
-Productos: 
-	Titanic:	10.99
-Precio total: 10.99

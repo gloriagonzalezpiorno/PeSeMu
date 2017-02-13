@@ -1,17 +1,14 @@
 package dad.practica.pesemu.controllers;
 
-import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import dad.practica.pesemu.model.CarritoCompra;
 import dad.practica.pesemu.model.Usuario;
 import dad.practica.pesemu.repositories.UsuarioRepository;
@@ -26,7 +23,6 @@ public class UsuarioController {
 	public void init() {
 		Usuario usuario = new Usuario("a", "a", "a", "a");
 		CarritoCompra carrito = new CarritoCompra();
-		carrito.setProductos(new ArrayList<>());
 		usuario.setCarrito(carrito);
 		usuario.setSaldo(100);
 		usuarioRepository.save(usuario);

@@ -1,7 +1,0 @@
-------- Compra PeSeMu ------
-Usuario: b
-Correo: b
-Fecha: 2017-02-12
-Productos: 
-	asd:	45.0
-Precio total: 45.0

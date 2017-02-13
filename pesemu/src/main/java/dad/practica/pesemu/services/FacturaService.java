@@ -1,5 +1,6 @@
 package dad.practica.pesemu.services;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,28 +9,36 @@ import java.io.PrintWriter;
 
 import org.springframework.stereotype.Service;
 
-import dad.practica.pesemu.model.CarritoCompra;
 import dad.practica.pesemu.model.Factura;
 
 @Service
 public class FacturaService {
 
-	public void crearFactura(CarritoCompra compra) {
+	public void crearFicheroFactura(Factura factura) {
 		//escritura de datos
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("facturas/factura.txt"));
-			pw.print(new Factura(compra));
+			pw.print(factura);
 			pw.flush();
 			pw.close();
-/*		//lectura de datos
-			BufferedReader br=new BufferedReader(new FileReader("\factura.txt"));
-			String s,s2=new String();
-			while((s=br.readLine())!=null)
-				s2+=s+"\n";
-			System.out.println("Texto leido:"+"\n"+s2);
-			br.close();*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+/*	public String leerFicheroFactura(long id) {
+		//escritura de datos
+		StringBuilder sb=new StringBuilder();
+		try {	
+			BufferedReader br = new BufferedReader(new FileReader("facturas/factura.txt"));
+			String linea;
+			while((linea=br.readLine())!=null){
+				sb.append(linea+"\n");
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}*/
 }
