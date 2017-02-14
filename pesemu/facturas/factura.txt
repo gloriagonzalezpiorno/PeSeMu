@@ -1,8 +1,14 @@
 ------- Compra PeSeMu ------
 Usuario: a
 Correo: a
-Fecha: 2017-02-13
+Fecha: 2017-02-14
 Productos: 
-	aida:	3.0
+	Titanic:	10.99
 	El quijote:	6.0
-Precio total: 9.0
+	Titanic:	10.99
+	El quijote:	6.0
+	Titanic:	10.99
+	El quijote:	6.0
+	Titanic:	10.99
+	El quijote:	6.0
+Precio total: 67.96
