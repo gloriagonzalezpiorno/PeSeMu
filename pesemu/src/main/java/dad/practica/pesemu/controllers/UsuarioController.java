@@ -1,7 +1,6 @@
 package dad.practica.pesemu.controllers;
 
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,15 +17,6 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
-	@PostConstruct
-	public void init() {
-		Usuario usuario = new Usuario("a", "a", "a", "a");
-		CarritoCompra carrito = new CarritoCompra();
-		usuario.setCarrito(carrito);
-		usuario.setSaldo(100);
-		usuarioRepository.save(usuario);
-	}
 
 	// Registro de un nuevo usuario
 	@PostMapping("usuarioNuevo")
