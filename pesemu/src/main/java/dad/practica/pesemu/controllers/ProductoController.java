@@ -2,8 +2,6 @@ package dad.practica.pesemu.controllers;
 
 import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dad.practica.pesemu.model.Opinion;
 import dad.practica.pesemu.model.Producto;
 import dad.practica.pesemu.repositories.ProductoRepository;
 
@@ -20,23 +17,6 @@ public class ProductoController {
 
 	@Autowired
 	private ProductoRepository productoRepository;
-
-	@PostConstruct
-	public void init() {
-
-		Opinion opinion1 = new Opinion("Me ha gustado mucho");
-		Opinion opinion2 = new Opinion("Es muy triste");
-
-		Producto producto1 = new Producto("Titanic", "Va sobre un barco", (float) 10.99, "pelicula", "accion");
-		Producto producto2 = new Producto("El quijote", "Un libro muy bonito", (float) 6.0, "pelicula", "comedia");
-
-		producto1.getOpiniones().add(opinion1);
-		producto1.getOpiniones().add(opinion2);
-
-		productoRepository.save(producto1);
-		productoRepository.save(producto2);
-
-	}
 
 	// Devuelve una vista con los distintos géneros del tipo de producto
 	// seleccionado (película, serie o música)
