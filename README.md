@@ -53,4 +53,4 @@ Fase 2 de PeSeMu
 
 ##Entidad Relación 
 
-![entidadrelacion](https://cloud.githubusercontent.com/assets/25226521/22258479/072a9048-e262-11e6-95df-077811828ba3.png)
+![entidadrelacion2](https://cloud.githubusercontent.com/assets/18498519/22970970/62447624-f374-11e6-913d-1c1e9dabb769.png)
