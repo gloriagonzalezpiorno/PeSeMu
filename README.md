@@ -47,6 +47,10 @@ Cuenta Github: gloriagonzalezpiorno
 # FASE2
 Fase 2 de PeSeMu
 
+##Diagrama de navegación
+
+[diagrama_navegacion.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/776895/diagrama_navegacion.pdf)
+
 ##Diagrama de clases UML
 
 ![diagramaclases](https://cloud.githubusercontent.com/assets/18498519/22970648/1dbce136-f373-11e6-8dba-bf58c8ddb377.jpg)
