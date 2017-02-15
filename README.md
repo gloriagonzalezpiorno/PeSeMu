@@ -49,6 +49,11 @@ Fase 2 de PeSeMu
 
 ##Diagrama de navegación
 
+
+
+Enlace para dercargar versión en pdf:
+[diagrama_navegacion.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/777003/diagrama_navegacion.pdf)
+
 [diagrama_navegacion.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/776895/diagrama_navegacion.pdf)
 
 ##Diagrama de clases UML
