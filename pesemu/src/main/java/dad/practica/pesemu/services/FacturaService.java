@@ -23,19 +23,4 @@ public class FacturaService {
 		}
 	}
 	
-/*	public String leerFicheroFactura(long id) {
-		//escritura de datos
-		StringBuilder sb=new StringBuilder();
-		try {	
-			BufferedReader br = new BufferedReader(new FileReader("facturas/factura.txt"));
-			String linea;
-			while((linea=br.readLine())!=null){
-				sb.append(linea+"\n");
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sb.toString();
-	}*/
 }
