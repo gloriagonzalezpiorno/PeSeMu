@@ -47,6 +47,20 @@ Cuenta Github: gloriagonzalezpiorno
 # FASE2
 Fase 2 de PeSeMu
 
+##Diagrama de navegación
+
+![diagrama_navegacion-1](https://cloud.githubusercontent.com/assets/25226521/22975175/f95375ae-f385-11e6-8e6c-a61ad05da35c.jpg)
+![diagrama_navegacion-2](https://cloud.githubusercontent.com/assets/25226521/22975178/fd920388-f385-11e6-9931-5cd69bd298ab.jpg)
+![diagrama_navegacion-3](https://cloud.githubusercontent.com/assets/25226521/22975179/fff672da-f385-11e6-8006-788b4d25a7f3.jpg)
+![diagrama_navegacion-4](https://cloud.githubusercontent.com/assets/25226521/22975180/0308f682-f386-11e6-8e9a-82074f830d5a.jpg)
+![diagrama_navegacion-5](https://cloud.githubusercontent.com/assets/25226521/22975184/05a68bca-f386-11e6-9dce-0fbc46baa2ab.jpg)
+![diagrama_navegacion-6](https://cloud.githubusercontent.com/assets/25226521/22975186/088ab258-f386-11e6-9443-617cfc71d02d.jpg)
+![diagrama_navegacion-7](https://cloud.githubusercontent.com/assets/25226521/22975191/0b09be52-f386-11e6-83c0-b13f1c464162.jpg)
+![diagrama_navegacion-8](https://cloud.githubusercontent.com/assets/25226521/22975193/0d57a1b0-f386-11e6-8050-a03135b58a4e.jpg)
+
+Enlace para dercargar versión en pdf:
+[diagrama_navegacion.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/777003/diagrama_navegacion.pdf)
+
 ##Diagrama de clases UML
 
 ![diagramaclases](https://cloud.githubusercontent.com/assets/18498519/22970648/1dbce136-f373-11e6-8dba-bf58c8ddb377.jpg)
