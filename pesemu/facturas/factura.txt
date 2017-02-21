@@ -1,14 +1,7 @@
 ------- Compra PeSeMu ------
 Usuario: a
 Correo: a
-Fecha: 2017-02-14
+Fecha: 2017-02-16
 Productos: 
-	Titanic:	10.99
-	El quijote:	6.0
-	Titanic:	10.99
-	El quijote:	6.0
-	Titanic:	10.99
-	El quijote:	6.0
-	Titanic:	10.99
-	El quijote:	6.0
-Precio total: 67.96
+	El Lobo De Wall Street [Blu-ray]:	7.59
+Precio total: 7.59
