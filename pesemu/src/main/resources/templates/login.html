@@ -8,14 +8,15 @@
   A{color:white}
   body {
     color: white;
-    background-image:url("fondo_general.jpg"); 
+/*     background-image:url("fondo_general.jpg");  */
+	background-color:black;
     background-size: cover;}
   </style>
 </head>
 <body>
 	<h1>PeSeMu</h1>
 	<h3>Inicio de sesión</h3>
-	<form action='inicioSesion' method='post'>
+	<form action='/login' method="post">
 		<p>
 			Correo electrónico: <input type='text' name='correo'>
 		</p>
@@ -23,6 +24,7 @@
 			Contraseña: <input type='password' name='contrasena'>
 		</p>
 		<input type='submit' value='Iniciar sesion'>
+	   <input type='hidden' name='_csrf' value='{{token}}'>
 	</form>
 	<br>
 	<a href='index.html'>Cancelar</a>

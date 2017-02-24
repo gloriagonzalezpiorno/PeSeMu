@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,23 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("/registroUsuario")
+	public String registroUsuario() {
+		return "registro_usuario";
+	}
+	
+	
+	@GetMapping("/sesionIniciada")
+	public String sesionIniciada() {
+		return "sesion_iniciada";
+	}
+	
+	
 	// Registro de un nuevo usuario
 	@PostMapping("usuarioNuevo")
 	public String nuevoUsuario(Model model, Usuario usuario) {
@@ -33,7 +51,7 @@ public class UsuarioController {
 		}
 	}
 
-	// Inicio de sesión de un usuario
+/*	// Inicio de sesión de un usuario
 	@PostMapping("inicioSesion")
 	public String inicioSesion(Model model, HttpSession sesion, @RequestParam String correo,
 			@RequestParam String contrasena) {
@@ -46,7 +64,7 @@ public class UsuarioController {
 			model.addAttribute("mensaje", "Error al iniciar sesión");
 			return "fallo";
 		}
-	}
+	}*/
 	
 	// Añadir saldo a la cuenta del usuario
 	@RequestMapping("aniadirSaldo")
