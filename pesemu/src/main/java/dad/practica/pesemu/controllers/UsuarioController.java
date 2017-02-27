@@ -3,11 +3,11 @@ package dad.practica.pesemu.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dad.practica.pesemu.model.CarritoCompra;
@@ -24,24 +24,28 @@ public class UsuarioController {
 	public String login() {
 		return "login";
 	}
-	
+
+	@GetMapping("/sesionIniciada")
+	public String sesionIniciada(Model model, HttpSession sesion) {
+		Usuario usuario = usuarioRepository
+				.findByCorreo(SecurityContextHolder.getContext().getAuthentication().getName());
+		sesion.setAttribute("idUsuario", usuario.getId());
+		model.addAttribute("nombre", usuario.getNombre());
+		return "sesion_iniciada";
+	}
+
 	@GetMapping("/registroUsuario")
 	public String registroUsuario() {
 		return "registro_usuario";
 	}
-	
-	
-	@GetMapping("/sesionIniciada")
-	public String sesionIniciada() {
-		return "sesion_iniciada";
-	}
-	
-	
+
 	// Registro de un nuevo usuario
 	@PostMapping("usuarioNuevo")
-	public String nuevoUsuario(Model model, Usuario usuario) {
+	public String nuevoUsuario(Model model, @RequestParam String nombre, @RequestParam String apellidos,
+			@RequestParam String correo, @RequestParam String contrasenia) {
 		// Si no existe un usuario con el mismo correo, se registra
-		if (usuarioRepository.findByCorreo(usuario.getCorreo()) == null) {
+		if (usuarioRepository.findByCorreo(correo) == null) {
+			Usuario usuario = new Usuario(nombre, apellidos, correo, contrasenia, "USUARIO");
 			usuario.setCarrito(new CarritoCompra());
 			usuarioRepository.save(usuario);
 			model.addAttribute("nombre", usuario.getNombre());
@@ -52,24 +56,24 @@ public class UsuarioController {
 		}
 	}
 
-/*	// Inicio de sesión de un usuario
-	@PostMapping("inicioSesion")
-	public String inicioSesion(Model model, HttpSession sesion, @RequestParam String correo,
-			@RequestParam String contrasena) {
-		Usuario usuarioGuardado = usuarioRepository.findByCorreoAndContrasena(correo, contrasena);
-		if (usuarioGuardado != null) {
-			sesion.setAttribute("idUsuario", usuarioGuardado.getId());
-			model.addAttribute("nombre", usuarioGuardado.getNombre());
-			return "sesion_iniciada";
-		} else {
-			model.addAttribute("mensaje", "Error al iniciar sesión");
-			return "fallo";
-		}
-	}*/
-	
+	/*
+	 * // Inicio de sesión de un usuario
+	 * 
+	 * @PostMapping("inicioSesion") public String inicioSesion(Model model,
+	 * HttpSession sesion, @RequestParam String correo,
+	 * 
+	 * @RequestParam String contrasena) { Usuario usuarioGuardado =
+	 * usuarioRepository.findByCorreoAndContrasena(correo, contrasena); if
+	 * (usuarioGuardado != null) { sesion.setAttribute("idUsuario",
+	 * usuarioGuardado.getId()); model.addAttribute("nombre",
+	 * usuarioGuardado.getNombre()); return "sesion_iniciada"; } else {
+	 * model.addAttribute("mensaje", "Error al iniciar sesión"); return "fallo";
+	 * } }
+	 */
+
 	// Añadir saldo a la cuenta del usuario
-	@RequestMapping("aniadirSaldo")
-	public String aniadirSaldo(Model model, HttpSession sesion, @RequestParam float cantidad){
+	@GetMapping("aniadirSaldo")
+	public String aniadirSaldo(Model model, HttpSession sesion, @RequestParam float cantidad) {
 		Usuario usuario = usuarioRepository.findOne((long) sesion.getAttribute("idUsuario"));
 		usuario.setSaldo(Float.sum(usuario.getSaldo(), cantidad));
 		usuarioRepository.save(usuario);

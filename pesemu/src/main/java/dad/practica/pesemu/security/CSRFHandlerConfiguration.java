@@ -1,4 +1,4 @@
-package dad.practica.pesemu.controllers;
+package dad.practica.pesemu.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
