@@ -20,14 +20,18 @@
 	<p>Descripción: {{producto.descripcion}}</p>
 	<p>Precio: {{producto.precio}}</p>
 	<br>
+	{{#usuario}}	
 	<a href="{{producto.id}}/aniadirACarrito">Añadir a carrito</a>
+	{{/usuario}}
 	<p>Opiniones:</p>
 	<ul>
 		{{#producto.opiniones}}
 		<li>{{.}}</li>
 		{{/producto.opiniones}}
 	</ul>
+	{{#usuario}}	
 	<a href="{{producto.id}}/opinion">Dar una nueva opinión</a>
+	{{/usuario}}
 	<br>
 	<a href="/catalogo/{{producto.tipo}}/{{producto.genero}}">Volver a
 		la lista de productos</a>

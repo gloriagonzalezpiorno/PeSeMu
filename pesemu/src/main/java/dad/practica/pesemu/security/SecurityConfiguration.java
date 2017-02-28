@@ -30,7 +30,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/catalogo/{tipo}/{genero}/{id}").permitAll();
 		
 		//páginas privadas
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/carrito").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/comprar").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/nuevo_producto.html").hasAnyRole("ADMIN");
 		
 		//login form
 		http.formLogin().loginPage("/login");
@@ -45,7 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//Disable CSRF at the moment
 		//http.csrf().disable();
-		
 	}
 	
     @Override

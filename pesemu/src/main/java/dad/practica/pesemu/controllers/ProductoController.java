@@ -2,7 +2,11 @@ package dad.practica.pesemu.controllers;
 
 import java.util.Arrays;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,18 +43,28 @@ public class ProductoController {
 	// Devuelve una vista con una lista de todos los productos de un determinado
 	// tipo y género
 	@RequestMapping("catalogo/{tipo}/{genero}")
-	public String verProductos(Model model, @PathVariable String tipo, @PathVariable String genero) {
+	public String verProductos(Model model, @PathVariable String tipo, @PathVariable String genero,HttpServletRequest request) {
 		model.addAttribute("productos", productoRepository.findByTipoAndGenero(tipo, genero));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		return "lista_productos";
 	}
 
 	// Devuelve una vista con toda la información de un producto
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}")
-	public String verProducto(Model model, @PathVariable long id) {
+	public String verProducto(Model model, @PathVariable long id,HttpServletRequest request) {
 		model.addAttribute("producto", productoRepository.findOne(id));
+		model.addAttribute("usuario", request.isUserInRole("ADMIN") || request.isUserInRole("USUARIO"));
 		return "producto";
 	}
 
+	
+	// Insertamos un nuevo producto en la BBDD
+	@RequestMapping("catalogo/{tipo}/{genero}/aniadirProducto")
+	public String aniadirProducto() {
+		return "nuevo_producto";
+	}
+	
+	
 	// Insertamos un nuevo producto en la BBDD
 	@RequestMapping("catalogo/nuevoProducto")
 	public String nuevoProducto(Model model, Producto producto) {
@@ -58,6 +72,8 @@ public class ProductoController {
 		model.addAttribute("operacion", "añadido al stock");
 		return "producto_operacion";
 	}
+	
+	
 	
 	
 	

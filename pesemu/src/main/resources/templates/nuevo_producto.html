@@ -7,14 +7,15 @@
   A{color:white}
   body {
     color: white;
-    background-image:url("fondo_general.jpg");
+     background-color:black;
+/*     background-image:url("fondo_general.jpg"); */
     background-size: cover;}
   </style>
 </head>
 <body>
 	<h1>PeSeMu</h1>
 	<h3>Insertar un nuevo producto</h3>
-	<form action="catalogo/nuevoProducto" method="post">
+	<form action="/catalogo/nuevoProducto" method="post">
 		<p>Nombre:</p>
 		<input type='text' name='nombre' />
 		<p>Descripción:</p>
@@ -41,6 +42,7 @@
 		</select>
 		<br><br>
 		<input type='submit' value='Enviar' />
+		<input type="hidden" name="_csrf" value="{{token}}"/>
 	</form>
 </body>
 </html>
