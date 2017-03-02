@@ -25,6 +25,13 @@ public class UsuarioController {
 		return "login";
 	}
 
+	@GetMapping("/loginerror")
+	public String loginerror(Model model) {
+		model.addAttribute("mensaje", "Error al iniciar sesión");
+		return "fallo";
+	}
+	
+	
 	@GetMapping("/sesionIniciada")
 	public String sesionIniciada(Model model, HttpSession sesion) {
 		Usuario usuario = usuarioRepository
@@ -40,12 +47,12 @@ public class UsuarioController {
 	}
 
 	// Registro de un nuevo usuario
-	@PostMapping("usuarioNuevo")
+	@PostMapping("/usuarioNuevo")
 	public String nuevoUsuario(Model model, @RequestParam String nombre, @RequestParam String apellidos,
 			@RequestParam String correo, @RequestParam String contrasenia) {
 		// Si no existe un usuario con el mismo correo, se registra
 		if (usuarioRepository.findByCorreo(correo) == null) {
-			Usuario usuario = new Usuario(nombre, apellidos, correo, contrasenia, "USUARIO");
+			Usuario usuario = new Usuario(nombre, apellidos, correo, contrasenia, "ROLE_USUARIO");
 			usuario.setCarrito(new CarritoCompra());
 			usuarioRepository.save(usuario);
 			model.addAttribute("nombre", usuario.getNombre());
@@ -56,23 +63,8 @@ public class UsuarioController {
 		}
 	}
 
-	/*
-	 * // Inicio de sesión de un usuario
-	 * 
-	 * @PostMapping("inicioSesion") public String inicioSesion(Model model,
-	 * HttpSession sesion, @RequestParam String correo,
-	 * 
-	 * @RequestParam String contrasena) { Usuario usuarioGuardado =
-	 * usuarioRepository.findByCorreoAndContrasena(correo, contrasena); if
-	 * (usuarioGuardado != null) { sesion.setAttribute("idUsuario",
-	 * usuarioGuardado.getId()); model.addAttribute("nombre",
-	 * usuarioGuardado.getNombre()); return "sesion_iniciada"; } else {
-	 * model.addAttribute("mensaje", "Error al iniciar sesión"); return "fallo";
-	 * } }
-	 */
-
 	// Añadir saldo a la cuenta del usuario
-	@GetMapping("aniadirSaldo")
+	@GetMapping("/aniadirSaldo")
 	public String aniadirSaldo(Model model, HttpSession sesion, @RequestParam float cantidad) {
 		Usuario usuario = usuarioRepository.findOne((long) sesion.getAttribute("idUsuario"));
 		usuario.setSaldo(Float.sum(usuario.getSaldo(), cantidad));

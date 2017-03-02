@@ -22,8 +22,13 @@
 	<br><br>
 	<a href="registroUsuario">Registrar como usuario</a>
 	<br><br><br>
-	<!-- <a href="carrito.html">Ver carrito</a> -->
+	{{#usuario}}
     <a href="carrito"><img src="ver_carrito.jpg"/></a> 
+    <form action="/logout" method="post">
+		<input type="submit" value="Cerrar sesión" />
+		<input type="hidden" name="_csrf" value="{{token}}"/>
+	</form>
+    {{/usuario}}
 	<br><br>
 	
 </body>

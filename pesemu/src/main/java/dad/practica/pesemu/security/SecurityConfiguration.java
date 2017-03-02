@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		//páginas publicas
 		http.authorizeRequests().antMatchers("/").permitAll();
-		http.authorizeRequests().antMatchers("/index.html").permitAll();
+		http.authorizeRequests().antMatchers("/principal.html").permitAll();
 		http.authorizeRequests().antMatchers("/registroUsuario").permitAll();
 		http.authorizeRequests().antMatchers("/registro_usuario.html").permitAll();
 		http.authorizeRequests().antMatchers("/usuarioNuevo").permitAll();
@@ -26,27 +26,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/inicioSesion").permitAll();
 		http.authorizeRequests().antMatchers("/tipos_producto.html").permitAll();
 		http.authorizeRequests().antMatchers("/catalogo").permitAll();
-		http.authorizeRequests().antMatchers("/catalogo/{tipo}/{genero}").permitAll();
-		http.authorizeRequests().antMatchers("/catalogo/{tipo}/{genero}/{id}").permitAll();
 		
-		//páginas privadas
-		http.authorizeRequests().antMatchers("/carrito").hasAnyRole("USUARIO","ADMIN");
+		//páginas privadas--------------------------------------------------------------------------------
+		//carrito
+		http.authorizeRequests().antMatchers("/carrito/**").hasAnyRole("USUARIO","ADMIN");
 		http.authorizeRequests().antMatchers("/comprar").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/catalogo/**/aniadirACarrito").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/compra_finalizada.html").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/producto_aniadido_carrito.html").hasAnyRole("USUARIO","ADMIN");
+		//opiniones
+		http.authorizeRequests().antMatchers("/catalogo/**/opinion").hasAnyRole("USUARIO","ADMIN");	
+		http.authorizeRequests().antMatchers("/saldo_aniadido.html").hasAnyRole("USUARIO","ADMIN");
+		//usuario
+		http.authorizeRequests().antMatchers("/aniadirSaldo").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/aniadir_saldo.html").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/saldo_aniadido.html").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/sesion_iniciada.html").hasAnyRole("USUARIO","ADMIN");
+		http.authorizeRequests().antMatchers("/usuario_registrado.html").hasAnyRole("USUARIO","ADMIN");
+		//producto
 		http.authorizeRequests().antMatchers("/nuevo_producto.html").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/catalogo/**/aniadirProducto").hasAnyRole("ADMIN");
+		//imagenes privadas
+		http.authorizeRequests().antMatchers("/ver_carrito.jpg").hasAnyRole("USUARIO","ADMIN");
+
 		
 		//login form
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("correo");
 		http.formLogin().passwordParameter("contrasena");
 		http.formLogin().defaultSuccessUrl("/sesionIniciada");
-		http.formLogin().failureUrl("/fallo.html");
+		http.formLogin().failureUrl("/loginerror");
 		
 		//Logout
-		http.logout().logoutUrl("logout.html");
+		http.logout().logoutUrl("/logout");
 		http.logout().logoutSuccessUrl("/");
 		
-		//Disable CSRF at the moment
-		//http.csrf().disable();
 	}
 	
     @Override
