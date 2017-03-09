@@ -1,7 +1,7 @@
 ------- Compra PeSeMu ------
 Usuario: nombre
-Correo: usuario
-Fecha: 2017-02-28
+Correo: admin
+Fecha: 2017-03-03
 Productos: 
-	sdfadf:	23.0
-Precio total: 23.0
+	producto1:	10.0
+Precio total: 10.0

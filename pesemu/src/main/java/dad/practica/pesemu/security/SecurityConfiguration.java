@@ -14,7 +14,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		//páginas publicas
+		//páginas publicas--------------------------------------------------------------------------------
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/principal.html").permitAll();
 		http.authorizeRequests().antMatchers("/registroUsuario").permitAll();

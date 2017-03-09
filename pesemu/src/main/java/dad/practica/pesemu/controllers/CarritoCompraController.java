@@ -1,5 +1,7 @@
 package dad.practica.pesemu.controllers;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 import dad.practica.pesemu.model.Factura;
 import dad.practica.pesemu.model.Producto;
@@ -17,22 +21,18 @@ import dad.practica.pesemu.model.Usuario;
 import dad.practica.pesemu.repositories.FacturaRepository;
 import dad.practica.pesemu.repositories.ProductoRepository;
 import dad.practica.pesemu.repositories.UsuarioRepository;
-import dad.practica.pesemu.services.FacturaService;
 
 @Controller
 public class CarritoCompraController {
 
-	@Autowired 
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
 	private ProductoRepository productoRepository;
-	
-	@Autowired
-	private FacturaRepository facturaRepository;
 
 	@Autowired
-	private FacturaService facturaService;
+	private FacturaRepository facturaRepository;
 
 	// Insertar producto en el carrito del usuario
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirACarrito")
@@ -42,7 +42,7 @@ public class CarritoCompraController {
 			Usuario usuario = usuarioRepository.findOne((long) objId);
 			usuario.getCarrito().aniadirProducto(productoRepository.findOne(id));
 			usuarioRepository.save(usuario);
-			model.addAttribute("operacion","añadido al carrito");
+			model.addAttribute("operacion", "añadido al carrito");
 			return "producto_operacion";
 		} else {
 			model.addAttribute("mensaje", "Debes registrarte para añadir un producto al carrito");
@@ -85,16 +85,20 @@ public class CarritoCompraController {
 
 	// Comprar productos del carrito
 	@RequestMapping("comprar")
-	public String finalizarCompra(Model model, HttpSession sesion) {
+	public String finalizarCompra(Model model, HttpSession sesion) throws RestClientException, URISyntaxException {
 		Object objId = sesion.getAttribute("idUsuario");
 		if (objId != null) {
 			Usuario usuario = usuarioRepository.findOne((long) objId);
 			if (usuario.getCarrito().puedeComprar()) {
 				usuario.getCarrito().finalizarCompra();
-				Factura factura=new Factura (usuario.getCarrito());
-				facturaService.crearFicheroFactura(factura);
-				Factura facturaGuardada = facturaRepository.save(factura);
-				
+				Factura factura = new Factura(usuario.getCarrito());
+				facturaRepository.save(factura);
+
+				RestTemplate rest = new RestTemplate();
+
+				String urlFactura = rest.postForObject(new URI("http://127.0.0.1:8080"), factura.toString(),
+						String.class);
+
 				// Utilizamos una lista auxiliar para guardar las referencias a
 				// los productos
 				List<Producto> productos = new ArrayList<>();
@@ -110,8 +114,8 @@ public class CarritoCompraController {
 				usuario.getCarrito().reiniciarCarrito();
 				// Actualizamos el usuario en su repositorio
 				usuarioRepository.save(usuario);
-				
-				model.addAttribute("idFactura", facturaGuardada.getId());
+
+				model.addAttribute("urlFactura", urlFactura);
 				return "compra_finalizada";
 			} else {
 				model.addAttribute("mensaje", "No se puede realizar la compra");
@@ -122,5 +126,5 @@ public class CarritoCompraController {
 			return "fallo";
 		}
 	}
- 
+
 }
