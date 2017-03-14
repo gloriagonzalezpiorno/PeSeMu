@@ -115,7 +115,7 @@ public class CarritoCompraController {
 				// Actualizamos el usuario en su repositorio
 				usuarioRepository.save(usuario);
 
-				model.addAttribute("urlFactura", urlFactura);
+				model.addAttribute("idFactura", factura.getId());
 				return "compra_finalizada";
 			} else {
 				model.addAttribute("mensaje", "No se puede realizar la compra");
