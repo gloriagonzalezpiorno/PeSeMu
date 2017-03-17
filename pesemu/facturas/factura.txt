@@ -1,7 +1,0 @@
-------- Compra PeSeMu ------
-Usuario: nombre
-Correo: admin
-Fecha: 2017-03-03
-Productos: 
-	producto1:	10.0
-Precio total: 10.0
