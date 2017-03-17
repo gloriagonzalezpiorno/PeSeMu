@@ -96,8 +96,7 @@ public class CarritoCompraController {
 
 				RestTemplate rest = new RestTemplate();
 
-				String urlFactura = rest.postForObject(new URI("http://127.0.0.1:8080"), factura.toString(),
-						String.class);
+				String urlFactura = rest.postForObject(new URI("http://127.0.0.1:8080"), factura, String.class);
 
 				// Utilizamos una lista auxiliar para guardar las referencias a
 				// los productos
@@ -116,6 +115,7 @@ public class CarritoCompraController {
 				usuarioRepository.save(usuario);
 
 				model.addAttribute("idFactura", factura.getId());
+				model.addAttribute("urlFactura", urlFactura);
 				return "compra_finalizada";
 			} else {
 				model.addAttribute("mensaje", "No se puede realizar la compra");

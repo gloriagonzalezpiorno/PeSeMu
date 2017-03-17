@@ -17,12 +17,12 @@ public class DatabaseUsersLoader {
 	@PostConstruct
 	private void initDatabase() {
 		if (usuarioRepository.findByCorreo("usuario") == null) {
-			Usuario user = new Usuario("nombre", "apellidos", "usuario", "pass", "ROLE_USUARIO");
+			Usuario user = new Usuario("usuario", "usuario", "usuario", "pass", "ROLE_USUARIO");
 			user.setCarrito(new CarritoCompra());
 			usuarioRepository.save(user);
 		}
 		if (usuarioRepository.findByCorreo("admin") == null) {
-			Usuario admin = new Usuario("nombre", "apellidos", "admin", "adminpass", "ROLE_USUARIO", "ROLE_ADMIN");
+			Usuario admin = new Usuario("admin", "admin", "admin", "adminpass", "ROLE_USUARIO", "ROLE_ADMIN");
 			admin.setCarrito(new CarritoCompra());
 			usuarioRepository.save(admin);
 		}

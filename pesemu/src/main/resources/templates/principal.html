@@ -18,17 +18,19 @@
 	<h1>PeSeMu</h1>
 	<a href="tipos_producto.html">Ver productos</a>
 	<br><br>
+	{{#login}}
 	<a href="login">Iniciar sesion</a>
 	<br><br>
 	<a href="registroUsuario">Registrar como usuario</a>
 	<br><br><br>
-	{{#usuario}}
+	{{/login}}
+	{{^login}}
     <a href="carrito"><img src="ver_carrito.jpg"/></a> 
     <form action="/logout" method="post">
 		<input type="submit" value="Cerrar sesión" />
 		<input type="hidden" name="_csrf" value="{{token}}"/>
 	</form>
-    {{/usuario}}
+    {{/login}}
 	<br><br>
 	
 </body>

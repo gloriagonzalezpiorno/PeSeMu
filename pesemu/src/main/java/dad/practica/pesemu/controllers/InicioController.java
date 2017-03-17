@@ -12,7 +12,7 @@ public class InicioController {
 
 	@RequestMapping("/")
 	public String ventanaPrincipal(Model model, HttpServletRequest request) {
-		model.addAttribute("usuario",request.isUserInRole("ADMIN")||request.isUserInRole("USUARIO"));
+		model.addAttribute("login",!request.isUserInRole("ADMIN") && !request.isUserInRole("USUARIO"));
 		return "principal";
 	}
 

@@ -18,7 +18,7 @@ public class FacturaController {
 	@RequestMapping("/leerFactura/{id}")
 	public String leerFactura(Model model, @PathVariable long id){
 		Factura factura=facturaRepository.findOne(id);
-		model.addAttribute("contenidoFactura",factura.getTexto());
+		model.addAttribute("contenidoFactura",factura.getInformacion());
 		return "leer_factura";
 	}
 }

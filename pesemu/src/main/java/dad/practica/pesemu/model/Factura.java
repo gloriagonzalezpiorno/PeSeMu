@@ -11,7 +11,11 @@ public class Factura {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String texto;
+	private String titulo;
+	private String nombreUsuario;
+	private String correo;
+	private String fecha;
+	private String informacion;
 	
 
 	public Factura() {
@@ -20,16 +24,16 @@ public class Factura {
 
 	public Factura(CarritoCompra compra) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("------- Compra PeSeMu ------\n");
-		sb.append("Usuario: " + compra.getUsuario().getNombre() + "\n");
-		sb.append("Correo: " + compra.getUsuario().getCorreo() + "\n");
-		sb.append("Fecha: " + compra.getFecha() + "\n");
+		titulo = "------- Compra PeSeMu ------\n";
+		nombreUsuario = "Usuario: " + compra.getUsuario().getNombre() + "\n";
+		correo = "Correo: " + compra.getUsuario().getCorreo() + "\n";
+		fecha = "Fecha: " + compra.getFecha() + "\n";
 		sb.append("Productos: \n");
 		for (Producto producto : compra.getProductos()) {
 			sb.append("\t" + producto.getNombre() + ":\t" + producto.getPrecio() + "\n");
 		}
 		sb.append("Precio total: " + compra.getCosteTotal() + "\n");
-		texto = sb.toString();
+		informacion = sb.toString();
 	}
 
 	
@@ -41,17 +45,49 @@ public class Factura {
 		this.id = id;
 	}
 
-	public String getTexto() {
-		return texto;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getInformacion() {
+		return informacion;
+	}
+
+	public void setInformacion(String texto) {
+		this.informacion = texto;
 	}
 
 	@Override
 	public String toString() {
-		return texto;
+		return informacion;
 	}
 
 }
