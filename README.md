@@ -72,6 +72,12 @@ Enlace para dercargar versión en pdf:
 # FASE 3
 Fase 3 de PeSeMu
 
+## Servicio
+Enlace al repositorio del servicio: https://github.com/gloriagonzalezpiorno/servicioPesemu
+
+El servicio consiste en una API REST con un método que recibe un objeto Factura y crea un fichero de texto
+con la información.
+
 ## Diagrama de navegación
 
 [diagramaSeguridad.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/856225/diagramaSeguridad.pdf)
