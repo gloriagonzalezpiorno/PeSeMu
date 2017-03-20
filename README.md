@@ -8,7 +8,7 @@ PeSeMu
 ### Descripción de la temática de la web
 La aplicación web consiste en la venta on-line de películas, series de TV y productos musicales.
 
-###Funcionalidad pública y privada y diferentes usuarios
+### Funcionalidad pública y privada y diferentes usuarios
 La parte pública se trata en un catálogo con los productos disponibles, su precio, su valoración
 por los clientes, etc.
 La parte privada para el cliente sería su carro de la compra, historial, etc.
@@ -29,7 +29,7 @@ Las entidades principales de la aplicación web son:
 Nuestro servicio externo consistirá en la generación de facturas de cada compra.
 
 ## Equipo
-###Integrantes del equipo de desarrollo:
+### Integrantes del equipo de desarrollo:
 
 **Daniel Jesús Rosado Fernández**
 
@@ -61,18 +61,22 @@ Fase 2 de PeSeMu
 Enlace para dercargar versión en pdf:
 [diagrama_navegacion.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/777003/diagrama_navegacion.pdf)
 
-##Diagrama de clases UML
+## Diagrama de clases UML
 
 ![diagramaclases](https://cloud.githubusercontent.com/assets/18498519/22970648/1dbce136-f373-11e6-8dba-bf58c8ddb377.jpg)
 
-##Entidad Relación 
+## Diagrama Entidad Relación 
 
 ![diagrama-er](https://cloud.githubusercontent.com/assets/18498519/22971731/f7f1c760-f376-11e6-8df3-86a7dfb7528c.JPG)
 
 # FASE 3
 Fase 3 de PeSeMu
 
-##Diagrama de navegación
+## Diagrama de navegación
 
 [diagramaSeguridad.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/856225/diagramaSeguridad.pdf)
+
+## Diagrama de clases y templates
+
+![diagramaclasesfase3](https://cloud.githubusercontent.com/assets/18498519/24119912/19fa08bc-0db3-11e7-8554-69a1d424c6f1.png)
 
