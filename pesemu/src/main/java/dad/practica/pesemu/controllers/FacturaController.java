@@ -11,14 +11,18 @@ import dad.practica.pesemu.repositories.FacturaRepository;
 
 @Controller
 public class FacturaController {
-	
+
 	@Autowired
 	private FacturaRepository facturaRepository;
 
 	@RequestMapping("/leerFactura/{id}")
-	public String leerFactura(Model model, @PathVariable long id){
-		Factura factura=facturaRepository.findOne(id);
-		model.addAttribute("contenidoFactura",factura.getInformacion());
+	public String leerFactura(Model model, @PathVariable long id) {
+		Factura factura = facturaRepository.findOne(id);
+		model.addAttribute("titulo", factura.getTitulo());
+		model.addAttribute("nombreUsuario", factura.getNombreUsuario());
+		model.addAttribute("correo", factura.getCorreo());
+		model.addAttribute("fecha", factura.getFecha());
+		model.addAttribute("productos", factura.getProductos());
 		return "leer_factura";
 	}
 }
