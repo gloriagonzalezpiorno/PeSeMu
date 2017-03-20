@@ -87,7 +87,7 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return productos;
+		return titulo + nombreUsuario + correo + fecha + productos;
 	}
 
 }
