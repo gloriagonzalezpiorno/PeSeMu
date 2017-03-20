@@ -80,6 +80,14 @@ con la información.
 
 ## Diagrama de navegación
 
+![diagramaseguridad-001](https://cloud.githubusercontent.com/assets/25226521/24121037/0b26f986-0db7-11e7-8184-264537472c13.jpg)
+![diagramaseguridad-002](https://cloud.githubusercontent.com/assets/25226521/24121038/0b27e2f6-0db7-11e7-81fa-28cff6b693a5.jpg)
+![diagramaseguridad-003](https://cloud.githubusercontent.com/assets/25226521/24121039/0b3dac3a-0db7-11e7-9db8-a73cb52c526d.jpg)
+![diagramaseguridad-004](https://cloud.githubusercontent.com/assets/25226521/24121040/0b3e185a-0db7-11e7-9e82-78aa87ff3d9e.jpg)
+![diagramaseguridad-005](https://cloud.githubusercontent.com/assets/25226521/24121042/0b510050-0db7-11e7-9018-a8b0735217e0.jpg)
+![diagramaseguridad-006](https://cloud.githubusercontent.com/assets/25226521/24121041/0b50872e-0db7-11e7-9277-05bdd88a21b7.jpg)
+
+Enlace para dercargar versión en pdf:
 [diagramaSeguridad.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/856225/diagramaSeguridad.pdf)
 
 ## Diagrama de clases y templates
