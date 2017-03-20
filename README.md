@@ -94,3 +94,33 @@ Enlace para dercargar versión en pdf:
 
 ![diagramaclasesfase3](https://cloud.githubusercontent.com/assets/18498519/24119912/19fa08bc-0db3-11e7-8554-69a1d424c6f1.png)
 
+## Instrucciones precisas para desplegar la aplicación en Azure
+
+Creamos las dos claves:  Azureus-cert.pem y azureus.key
+Primero nos creamos la máquina virtual en azure. 
+Para instalar OpenJDK 8 JRE: Nos conectamos a ella:
+ssh –i azureus.key azureuser@pesemu.cloudapp.net 
+sudo add-apt-repositoryppa:openjdk-r/ppa
+sudo apt-get update 
+sudo apt-get install openjdk-8-jr 
+Creamos una imagen de la máquina virtual con Java 8 instalado
+Limpiamos con:
+sudo waagent–deprovision+user 
+Salimos de la MV, la apagamos y hacemos una captura. 
+Arrancamos una nueva MV llamada ‘pesemu’ a partir de la imagen anterior. 
+Se le añade el fichero azureus-cert.pem 
+Instalamos mysql en la nueva maquina virtual:
+sudo apt-get update 
+sudo apt-get install-ymysql-server 
+Para crear la base de datos:
+mysql–uroot–p create database bdpesemu;
+exit
+Copiar ficheros a cloud:
+scp–iazureus.keynombre.jarazureuser@pesemu.cloudapp.net:/home/azureuser/ 
+Subir el fichero de la aplicación que use BBDD con auto=”none” 
+La primera vez que ejecutemos la aplicación:
+java–jar pesemu….jar--spring.jpa.hibernate.ddl-auto="create" Para que se cree el esquema.
+Las demás veces que queramos arrancar la aplicación lo haremos de la siguiente manera:
+java -jar pesemu-0.0.1-SNAPSHOT.jar &
+java -jar pesemu_servicio-0.0.1-SNAPSHOT.jar &
+Tanto en servicio como la aplicación deberán ejecutarse en segundo plana para no tener problemas.
