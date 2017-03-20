@@ -68,3 +68,11 @@ Enlace para dercargar versión en pdf:
 ##Entidad Relación 
 
 ![diagrama-er](https://cloud.githubusercontent.com/assets/18498519/22971731/f7f1c760-f376-11e6-8df3-86a7dfb7528c.JPG)
+
+# FASE 3
+Fase 3 de PeSeMu
+
+##Diagrama de navegación
+
+[diagramaSeguridad.pdf](https://github.com/gloriagonzalezpiorno/PeSeMu/files/856225/diagramaSeguridad.pdf)
+
