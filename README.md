@@ -47,7 +47,7 @@ Cuenta Github: gloriagonzalezpiorno
 # FASE2
 Fase 2 de PeSeMu
 
-##Diagrama de navegación
+## Diagrama de navegación
 
 ![diagrama_navegacion-1](https://cloud.githubusercontent.com/assets/25226521/22975175/f95375ae-f385-11e6-8e6c-a61ad05da35c.jpg)
 ![diagrama_navegacion-2](https://cloud.githubusercontent.com/assets/25226521/22975178/fd920388-f385-11e6-9931-5cd69bd298ab.jpg)
@@ -68,6 +68,8 @@ Enlace para dercargar versión en pdf:
 ## Diagrama Entidad Relación 
 
 ![diagrama-er](https://cloud.githubusercontent.com/assets/18498519/22971731/f7f1c760-f376-11e6-8df3-86a7dfb7528c.JPG)
+
+
 
 # FASE 3
 Fase 3 de PeSeMu
@@ -96,31 +98,65 @@ Enlace para dercargar versión en pdf:
 
 ## Instrucciones precisas para desplegar la aplicación en Azure
 
-Creamos las dos claves:  Azureus-cert.pem y azureus.key
-Primero nos creamos la máquina virtual en azure. 
-Para instalar OpenJDK 8 JRE: Nos conectamos a ella:
-ssh –i azureus.key azureuser@pesemu.cloudapp.net 
-sudo add-apt-repositoryppa:openjdk-r/ppa
-sudo apt-get update 
+### En primer lugar tenemos que crear un par de claves ssh:  azureus-cert.pem y azureus.key
+
+Después levantaremos una máquina virtual en Azure con Ubuntu.
+
+### Para instalar OpenJDK 8 JRE:
+
+Nos conectamos a ella utilizando ssh:
+
+ssh –i azureus.key azureuser@pesemu.cloudapp.net
+
+E instalamos Java:
+
+sudo add-apt-repository ppa:openjdk-r/ppa
+
+sudo apt-get update
+
 sudo apt-get install openjdk-8-jr 
-Creamos una imagen de la máquina virtual con Java 8 instalado
-Limpiamos con:
-sudo waagent–deprovision+user 
-Salimos de la MV, la apagamos y hacemos una captura. 
+
+### Ahora podemos crear una imagen de la máquina virtual con Java 8 instalado
+
+Primero limpiamos con: sudo waagent –deprovision+user
+
+Salimos de la MV, la apagamos y hacemos una captura.
+
 Arrancamos una nueva MV llamada ‘pesemu’ a partir de la imagen anterior. 
+
 Se le añade el fichero azureus-cert.pem 
-Instalamos mysql en la nueva maquina virtual:
-sudo apt-get update 
-sudo apt-get install-ymysql-server 
+
+### Después instalamos mysql en la nueva maquina virtual:
+
+sudo apt-get update
+
+sudo apt-get install-mysql-server
+
 Para crear la base de datos:
-mysql–uroot–p create database bdpesemu;
+
+mysql –u root –p
+
+create database bdpesemu;
+
 exit
-Copiar ficheros a cloud:
-scp–iazureus.keynombre.jarazureuser@pesemu.cloudapp.net:/home/azureuser/ 
+
+
+### Ahora podemos subir la aplicación a Azure:
+
 Subir el fichero de la aplicación que use BBDD con auto=”none” 
-La primera vez que ejecutemos la aplicación:
-java–jar pesemu….jar--spring.jpa.hibernate.ddl-auto="create" Para que se cree el esquema.
+
+scp – i azureus.key pesemu-0.0.1-SNAPSHOT.jar azureuser@pesemu.cloudapp.net:/home/azureuser/
+
+La primera vez que ejecutemos la aplicación se deberá crear el esquema en la base de datos:
+
+java –jar pesemu-0.0.1-SNAPSHOT.jar --spring.jpa.hibernate.ddl-auto="create"
+
+Subimos el fichero ejecutable del servicio y ya podemos usar la aplicación PeSeMu en Azure.
+
 Las demás veces que queramos arrancar la aplicación lo haremos de la siguiente manera:
+
 java -jar pesemu-0.0.1-SNAPSHOT.jar &
+
 java -jar pesemu_servicio-0.0.1-SNAPSHOT.jar &
-Tanto en servicio como la aplicación deberán ejecutarse en segundo plana para no tener problemas.
+
+Tanto en servicio como la aplicación podrían ejecutarse en segundo plano para comprobar su funcionamiento.
