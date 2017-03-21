@@ -106,19 +106,21 @@ Después levantaremos una máquina virtual en Azure con Ubuntu.
 
 Nos conectamos a ella utilizando ssh:
 
-ssh –i azureus.key azureuser@pesemu.cloudapp.net
+    ssh –i azureus.key azureuser@pesemu.cloudapp.net
 
 E instalamos Java:
 
-sudo add-apt-repository ppa:openjdk-r/ppa
+    sudo add-apt-repository ppa:openjdk-r/ppa
 
-sudo apt-get update
+    sudo apt-get update
 
-sudo apt-get install openjdk-8-jr 
+    sudo apt-get install openjdk-8-jr 
 
 ### Ahora podemos crear una imagen de la máquina virtual con Java 8 instalado
 
-Primero limpiamos con: sudo waagent –deprovision+user
+Primero limpiamos con:
+
+    sudo waagent –deprovision+user
 
 Salimos de la MV, la apagamos y hacemos una captura.
 
@@ -128,35 +130,35 @@ Se le añade el fichero azureus-cert.pem
 
 ### Después instalamos mysql en la nueva maquina virtual:
 
-sudo apt-get update
+    sudo apt-get update
 
-sudo apt-get install-mysql-server
+    sudo apt-get install-mysql-server
 
 Para crear la base de datos:
 
-mysql –u root –p
+    mysql –u root –p
 
-create database bdpesemu;
+    create database bdpesemu;
 
-exit
+    exit
 
 
 ### Ahora podemos subir la aplicación a Azure:
 
 Subir el fichero de la aplicación que use BBDD con auto=”none” 
 
-scp – i azureus.key pesemu-0.0.1-SNAPSHOT.jar azureuser@pesemu.cloudapp.net:/home/azureuser/
+    scp – i azureus.key pesemu-0.0.1-SNAPSHOT.jar azureuser@pesemu.cloudapp.net:/home/azureuser/
 
 La primera vez que ejecutemos la aplicación se deberá crear el esquema en la base de datos:
 
-java –jar pesemu-0.0.1-SNAPSHOT.jar --spring.jpa.hibernate.ddl-auto="create"
+    java –jar pesemu-0.0.1-SNAPSHOT.jar --spring.jpa.hibernate.ddl-auto="create"
 
 Subimos el fichero ejecutable del servicio y ya podemos usar la aplicación PeSeMu en Azure.
 
 Las demás veces que queramos arrancar la aplicación lo haremos de la siguiente manera:
 
-java -jar pesemu-0.0.1-SNAPSHOT.jar &
+    java -jar pesemu-0.0.1-SNAPSHOT.jar &
 
-java -jar pesemu_servicio-0.0.1-SNAPSHOT.jar &
+    java -jar pesemu_servicio-0.0.1-SNAPSHOT.jar &
 
 Tanto en servicio como la aplicación podrían ejecutarse en segundo plano para comprobar su funcionamiento.
