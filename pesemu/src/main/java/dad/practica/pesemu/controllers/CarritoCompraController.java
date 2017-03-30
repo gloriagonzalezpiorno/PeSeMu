@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,9 @@ public class CarritoCompraController {
 
 	@Autowired
 	private FacturaRepository facturaRepository;
+
+	@Value("${pesemu.servicio-interno.ip}")
+	private String servicioInternoIP;
 
 	// Insertar producto en el carrito del usuario
 	@RequestMapping("catalogo/{tipo}/{genero}/{id}/aniadirACarrito")
@@ -95,7 +99,7 @@ public class CarritoCompraController {
 				facturaRepository.save(factura);
 
 				RestTemplate rest = new RestTemplate();
-				rest.postForObject(new URI("http://127.0.0.1:8080"), factura, Void.class);
+				rest.postForObject(new URI("http://" + servicioInternoIP + ":8080"), factura, Void.class);
 
 				// Utilizamos una lista auxiliar para guardar las referencias a
 				// los productos
