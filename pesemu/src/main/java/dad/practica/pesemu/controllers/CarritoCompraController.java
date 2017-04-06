@@ -99,8 +99,11 @@ public class CarritoCompraController {
 				facturaRepository.save(factura);
 
 				RestTemplate rest = new RestTemplate();
-				rest.postForObject(new URI("http://" + servicioInternoIP + ":8080"), factura, Void.class);
-
+				String url = "http://" + servicioInternoIP + ":8080/";
+				System.out.println(url);
+				Boolean resp = rest.postForObject(new URI(url), factura, Boolean.class);
+				System.out.println("Fichero creado: "+ resp);
+				
 				// Utilizamos una lista auxiliar para guardar las referencias a
 				// los productos
 				List<Producto> productos = new ArrayList<>();
