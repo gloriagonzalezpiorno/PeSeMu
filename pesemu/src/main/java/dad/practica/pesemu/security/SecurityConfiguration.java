@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/catalogo").permitAll();
 		
 		//páginas privadas--------------------------------------------------------------------------------
+		//cache
+		http.authorizeRequests().antMatchers("/cache").hasAnyRole("ADMIN");
 		//carrito
 		http.authorizeRequests().antMatchers("/carrito/**").hasAnyRole("USUARIO","ADMIN");
 		http.authorizeRequests().antMatchers("/comprar").hasAnyRole("USUARIO","ADMIN");
