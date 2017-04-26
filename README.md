@@ -162,3 +162,10 @@ Las demás veces que queramos arrancar la aplicación lo haremos de la siguiente
     java -jar pesemu_servicio-0.0.1-SNAPSHOT.jar &
 
 Tanto en servicio como la aplicación podrían ejecutarse en segundo plano para comprobar su funcionamiento.
+
+
+# FASE4
+Fase 4 de PeSeMu
+
+## Video
+https://youtu.be/Ht-91N_oqiU
