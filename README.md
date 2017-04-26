@@ -169,3 +169,12 @@ Fase 4 de PeSeMu
 
 ## Video
 https://youtu.be/Ht-91N_oqiU
+
+## Diagrama infraestructura en Azure
+
+Éste es el diagrama de nuestra infraestructura en Azure:
+<img width="402" alt="azure" src="https://cloud.githubusercontent.com/assets/25226521/25433658/6dd590a8-2a89-11e7-9aa8-3e1f03a30c12.PNG">
+
+Tenemos una máquina virtual con un balanceador para distribuir las peticiones en la aplicación, basado en el algoritmo Round-robin. Este balanceador se comunica con 3 máquinas virtuales, todas ellas contienen el jar de la aplicación. El balanceador contiene las ips privadas de dichas máquinas y si se cae un nodo no pasará nada porque tenemos otros dos.
+Para que la aplicación funcione correctamente necesita la base de datos que hemos creado en otra máquina virtual, ya que sin ella no podremos hacer consultas a los productos, usuarios,facturas…y todo lo que almacenamos en ella.
+Nuestra aplicación tiene un servicio interno que se encarga de crear facturas, también hemos creado un balanceador para dicho servicio para que se distribuyan también las peticiones. Este balanceador hace peticiones a dos máquinas (servicio y servicio2). Este balanceador contiene las ips privadas de la máquina virtual de servicio y servicio2.
