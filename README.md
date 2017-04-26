@@ -173,6 +173,11 @@ Este método debe recibir un objeto de la clase Factura en el cuerpo de la petic
 Se encargará de crear un fichero de texto con la información del objeto en un directorio llamado ‘facturas’ dentro del directorio home de la máquina donde se ejecute el servicio interno.
 Devolverá como resultado verdadero si ha podido crear el fichero o, en caso de no haber podido, falso.
 
+## Diagrama de clases y templates
+No ha sido necesario crear clases nuevas para añadir tolerancia a fallos a la aplicación. Para ello, se han tenido que incluir balanceadores de carga y replicar la aplicación web y el servicio interno en otras máquinas virtuales. 
+
+Sí se ha creado una clase nueva CacheController para observar el comportamiento de la caché de Spring y de las consultas cacheadas. También se ha utilizado Hazelcast como caché distribuida para mantener la sesión iniciada por un usuario con un balanceador de carga delante de la aplicación web.
+
 ## Video
 https://youtu.be/Ht-91N_oqiU
 
