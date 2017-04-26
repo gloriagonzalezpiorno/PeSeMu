@@ -167,12 +167,19 @@ Tanto en servicio como la aplicación podrían ejecutarse en segundo plano para 
 # FASE4
 Fase 4 de PeSeMu
 
+## Documentación de la interfaz del servicio interno
+El servicio interno consiste en una API REST con un único método POST ‘generaFicheroFactura’.
+Este método debe recibir un objeto de la clase Factura en el cuerpo de la petición.
+Se encargará de crear un fichero de texto con la información del objeto en un directorio llamado ‘facturas’ dentro del directorio home de la máquina donde se ejecute el servicio interno.
+Devolverá como resultado verdadero si ha podido crear el fichero o, en caso de no haber podido, falso.
+
 ## Video
 https://youtu.be/Ht-91N_oqiU
 
-## Diagrama infraestructura en Azure
+## Diagrama de la infraestructura en Azure
 
 Éste es el diagrama de nuestra infraestructura en Azure:
+
 <img width="402" alt="azure" src="https://cloud.githubusercontent.com/assets/25226521/25433658/6dd590a8-2a89-11e7-9aa8-3e1f03a30c12.PNG">
 
 Tenemos una máquina virtual con un balanceador para distribuir las peticiones en la aplicación, basado en el algoritmo Round-robin. Este balanceador se comunica con 3 máquinas virtuales, todas ellas contienen el jar de la aplicación. El balanceador contiene las ips privadas de dichas máquinas y si se cae un nodo no pasará nada porque tenemos otros dos.
