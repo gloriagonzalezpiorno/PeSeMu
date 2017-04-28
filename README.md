@@ -178,8 +178,11 @@ No ha sido necesario crear clases nuevas para añadir tolerancia a fallos a la a
 
 Sí se ha creado una clase nueva CacheController para observar el comportamiento de la caché de Spring y de las consultas cacheadas. También se ha utilizado Hazelcast como caché distribuida para mantener la sesión iniciada por un usuario con un balanceador de carga delante de la aplicación web.
 
-## Video
+## Video manejo de la aplicación
 https://youtu.be/Ht-91N_oqiU
+
+## Video configuración de la aplicación en Azure 
+https://www.youtube.com/watch?v=2jV8g7cTGp4
 
 ## Diagrama de la infraestructura en Azure
 
